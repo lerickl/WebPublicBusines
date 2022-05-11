@@ -40,6 +40,18 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Cloudinary.Core": {
+              "target": "Package",
+              "version": "[1.31.0, )"
+            },
+            "Cloudinary.Core.DependencyInjection": {
+              "target": "Package",
+              "version": "[1.31.0, )"
+            },
+            "Cloudinary.Core.Sync": {
+              "target": "Package",
+              "version": "[1.31.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.4, )"

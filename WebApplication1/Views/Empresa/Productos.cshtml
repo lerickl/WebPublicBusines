@@ -1,7 +1,29 @@
 ﻿<!DOCTYPE html>
  @{ Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";}
 <html lang="en">
- <body id="page-top">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Public Business</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/publicBusiness/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/publicBusiness/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -10,7 +32,7 @@
          <!-- BARRA LATERAL -->
           <!-- BARRA LATERAL -->
            <!-- BARRA LATERAL -->
-        <ul style="background: #212121 !important;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul style="background: #212121 !important;" class=" navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
@@ -21,27 +43,27 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/usuario/index">
+                <a class="nav-link" href="/Empresa/index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>INICIO</span></a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/usuario/dashboard">
+            <li class="nav-item">
+                <a class="nav-link" href="/Empresa/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>MI DASHBOARD</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/usuario/productos">
+            <li class="nav-item active">
+                <a class="nav-link" href="/Empresa/productos">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Productos</span></a>
+                    <span>Mis Productos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/usuario/servicios">
+                <a class="nav-link" href="/Empresa/servicios">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Servicios</span></a>
+                    <span>Mis Servicios</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -166,74 +188,77 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">DASHBOARD</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Publicar Producto o Servicio</a>
+                        <h1 class="h3 mb-0 text-gray-800">MIS PRODUCTOS</h1>
+                        <a href="/Empresa/AddProducto" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> AGREGAR</a>
                     </div>
-            
-                    <!-- Content Row -->
-                    <div class="row">
-
-                       
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                COMENTARIOS</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Resumen Busquedas</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Acción 1</a>
-                                            <a class="dropdown-item" href="#">Acción 2</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Acción 3</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                    </div>
-
-
+             
                 </div>
-                <!-- /.container-fluid -->
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Lista de productos</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr>
+                                        <td>Producto 1</td>
+                                        <td>Descripcion producto 1</td>
+                                        <td>S/ 50</td>
+                                        <td>Limpieza</td>
+                                        <td style="width: 20px; text-align: center;">
+                                            <a href=""><i class="fa fa-edit"></i> </a>
+                                            <br>
+                                            <a href=""><i class="fa fa-trash-alt"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Producto 1</td>
+                                        <td>Descripcion producto 1</td>
+                                        <td>S/ 50</td>
+                                        <td>Limpieza</td>
+                                        <td style="width: 20px; text-align: center;">
+                                            <a href=""><i class="fa fa-edit"></i> </a>
+                                            <br>
+                                            <a href=""><i class="fa fa-trash-alt"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Producto 1</td>
+                                        <td>Descripcion producto 1</td>
+                                        <td>S/ 50</td>
+                                        <td>Limpieza</td>
+                                        <td style="width: 20px; text-align: center;">
+                                            <a href=""><i class="fa fa-edit"></i> </a>
+                                            <br>
+                                            <a href=""><i class="fa fa-trash-alt"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
             <!-- End of Main Content -->
@@ -278,7 +303,23 @@
             </div>
         </div>
     </div>
- 
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/publicBusiness/dashboard/vendor/jquery/jquery.min.js"></script>
+    <script src="/publicBusiness/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/publicBusiness/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/publicBusiness/dashboard/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/publicBusiness/dashboard/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/publicBusiness/dashboard/js/demo/chart-area-demo.js"></script>
+    <script src="/publicBusiness/dashboard/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

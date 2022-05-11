@@ -1,5 +1,5 @@
-﻿  <!DOCTYPE html>
- @{ Layout = "~/Views/Shared/_LayoutUsuario.cshtml";}
+﻿ <!DOCTYPE html>
+ @{ Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";}
 <html lang="en">
 
 <head>
@@ -42,28 +42,28 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="/usuario/index">
+            <li class="nav-item active">
+                <a class="nav-link" href="/Empresa/index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>INICIO</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/usuario/dashboard">
+                <a class="nav-link" href="/Empresa/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>MI DASHBOARD</span></a>
             </li>
 
-            <li class="nav-item active ">
-                <a class="nav-link" href="/usuario/productos">
+            <li class="nav-item ">
+                <a class="nav-link" href="/Empresa/productos">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Productos</span></a>
+                    <span>Mis Productos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/usuario/servicios">
+                <a class="nav-link" href="/Empresa/servicios">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Servicios</span></a>
+                    <span>Mis Servicios</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -190,8 +190,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">PRODUCTOS</h1>
-                     </div>
+                        <h1 class="h3 mb-0 text-gray-800">INICIO</h1>
+                        <a href="/Empresa/AddProducto" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> AGREGAR</a>
+                    </div>
                     <div class="container-fluid">
 
                     <!-- Page Heading -->
@@ -379,3 +380,23 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

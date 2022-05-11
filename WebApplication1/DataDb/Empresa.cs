@@ -12,6 +12,7 @@ namespace WebApplication1.DataDb
         public string? Direccion { get; set; }
         public string? Telefono { get; set; }
         public string? Email { get; set; }
+        public string? Contraseña { get; set; }
         public int? CategoriaId { get; set; }
     }
 }

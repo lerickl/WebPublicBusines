@@ -16,7 +16,7 @@ namespace WebApplication1.DataDb
         {
         }
 
-        public virtual DbSet<Categorium> Categoria { get; set; } = null!;
+        public virtual DbSet<Categoria> Categoria { get; set; } = null!;
         public virtual DbSet<Comentario> Comentarios { get; set; } = null!;
         public virtual DbSet<Empresa> Empresas { get; set; } = null!;
         public virtual DbSet<Favorito> Favoritos { get; set; } = null!;
@@ -36,9 +36,9 @@ namespace WebApplication1.DataDb
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categorium>(entity =>
+            modelBuilder.Entity<Categoria>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(x => x.CategoriaId);
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(500)
@@ -62,7 +62,7 @@ namespace WebApplication1.DataDb
 
             modelBuilder.Entity<Empresa>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=>e.EmpresaId);
 
                 entity.ToTable("Empresa");
 
@@ -87,6 +87,9 @@ namespace WebApplication1.DataDb
                     .IsUnicode(false);
 
                 entity.Property(e => e.Telefono)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.CategoriaId)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });

@@ -5,12 +5,20 @@ using WebApplication1.Servicios.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebeOContext>(options =>
-   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
- 
+builder.Services.AddScoped<IUsuarioService, UsuarioService>(); 
+builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+
+builder.Services.AddSession(options => 
+{
+    options.Cookie.Name = ".AdventureWarks.Session";
+    options.IOTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.IsEssential = true;
+
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

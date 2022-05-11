@@ -26,19 +26,29 @@ namespace WebApplication1.Servicios
         }
         public void EditarUsuario(int idUser, Usuario user)
         {
-            throw new NotImplementedException();
+            var temp = _db.Usuarios.Where(x => x.UsuarioId == idUser).FirstOrDefault();
+            temp.Nombres = user.Nombres;
+            temp.ApellidoPaterno = user.ApellidoPaterno;
+            temp.ApellidoMaterno = user.ApellidoMaterno;
+            temp.Email = user.Email;
+            temp.Usuarioname = user.Usuarioname;
+            temp.Contraseña = user.Contraseña;
+
+            _db.SaveChanges();
+
         }
 
-       
+
 
         public Usuario GetUsuarioByEmailAndPassword(string correo, string clave)
         {
             Usuario user = _db.Usuarios.Where(u => u.Email == correo).FirstOrDefault();
+            
             if (user == null) { return null; }
             if (user.Email == correo && user.Contraseña == clave)
             {
                 return user;
-            }
+            }    
             return null;
         }
 

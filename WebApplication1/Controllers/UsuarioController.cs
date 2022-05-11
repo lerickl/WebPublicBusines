@@ -49,7 +49,11 @@ namespace WebApplication1.Controllers
                 return View();
             }
         }
-
+        [HttpGet]
+        public ActionResult AddProducto() {
+        
+            return View();
+        }
         // GET: UsuarioController/Edit/5
         public ActionResult Edit(int id)
         {

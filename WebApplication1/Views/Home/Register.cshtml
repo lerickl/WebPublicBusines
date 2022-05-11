@@ -29,16 +29,17 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <form class="box">
+                    <form class="box" method="post" action="/Home/Register">
                         <h1>Registrarse</h1>
-                        <input type="text" name="" placeholder="Nombres"> 
-                        <input type="text" name="" placeholder="Apellidos"> 
-                        <input type="text" name="" placeholder="Empresa"> 
-                        <input type="text" name="" placeholder="Email"> 
-                        <input type="password" name=""placeholder="Contraseña">
-                        <a href="dashboard.html" class="btn btn-primary btn-user btn-block">
-                            Registrarse
-                        </a>
+                        <input type="text" name="Nombres" placeholder="Nombres"> 
+                        <input type="text" name="ApellidoPaterno" placeholder="Primer Apellido"> 
+                        <input type="text" name="ApellidoMaterno" placeholder="Segundo Apellido"> 
+                        <input type="text" name="Usuarioname" placeholder="Nombre Usuario"> 
+                        <input type="text" name="Email" placeholder="Email"> 
+                        <input type="password" name="Contraseña"placeholder="Contraseña">
+                        <button type="submit"><a  class="btn btn-primary btn-user btn-block"> Registrarse
+                        </a></button>
+                            
                         <div class="col-md-12">
                             <br>
                             <ul class="social-network social-circle">
