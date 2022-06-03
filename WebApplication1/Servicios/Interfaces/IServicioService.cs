@@ -1,4 +1,6 @@
-﻿using WebApplication1.Models;
+﻿
+using WebApplication1.DataDb;
+using WebApplication1.Models.viewModels;
 
 namespace WebApplication1.Servicios.Interfaces
 {
@@ -8,6 +10,7 @@ namespace WebApplication1.Servicios.Interfaces
         Servicio GetServicioByID(int? IdServicio);
 
         IEnumerable<Servicio> GetAllServicio();
+        IList<Servicio> GetAllServicioListById(int? id);
 
         void EditarServicio(int idServicio, Servicio servicio);
     }

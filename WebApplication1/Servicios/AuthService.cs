@@ -1,40 +1,65 @@
 ﻿using WebApplication1.DataDb;
 using System.Web;
 using WebApplication1.Servicios.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebApplication1.Servicios
 {
     public class AuthService : IAuthService
     {
         private readonly WebeOContext db;
-        public AuthService(WebeOContext _db)
+        private readonly IHttpContextAccessor _context;
+        private readonly ISessionService _SessionService;
+        public AuthService(WebeOContext _db, ISessionService SessionService, IHttpContextAccessor context)
         {
-            db = _db;
+            this.db = _db;
+            _SessionService = SessionService;
+            _context = context;
+            
+          
         }
 
-        public void GetLogedUser()
+        public Usuario GetLogedUser()
         {
-            throw new NotImplementedException();
+            int dat = Convert.ToInt32(_context.HttpContext.Session.GetString("usuario"));
+            Usuario usr = db.Usuarios.Where(x => x.UsuarioId == dat).FirstOrDefault();
+            return (usr);
+        }
+        public Empresa GetLogedEmpr()
+        {
+            int dat=Convert.ToInt32(_context.HttpContext.Session.GetString("usuario") );
+            Empresa empr =db.Empresas.Where(x=>x.EmpresaId == dat).FirstOrDefault();
+            return (empr);
         }
 
-        public Usuario Login(Usuario usuario)
+        public string Login(string email, string contraseña)
         {
-            throw new NotImplementedException();
+            Usuario user = db.Usuarios.Where(x => x.Email == email && x.Contraseña == contraseña).FirstOrDefault();
+            Empresa empr= db.Empresas.Where(x => x.Email == email && x.Contraseña == contraseña).FirstOrDefault();
+
+            if (user != null)
+            {
+                _SessionService.GuardarSessionUsr(user, _context);
+
+                return "usuario";
+                
+            }
+            else if (empr != null)
+            {
+                _SessionService.GuardarSessionEmpr(empr,_context);
+                return "empresa";
+            }
+            return null;
+            
         }
 
-        public Models.Usuario Login(Models.Usuario usuario)
-        {
-            throw new NotImplementedException();
-        }
+   
 
         public void Logout()
         {
-            throw new NotImplementedException();
+            _context.HttpContext.SignOutAsync();
         }
 
-        Models.Usuario IAuthService.GetLogedUser()
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

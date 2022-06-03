@@ -3,17 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+    @*<script src="~/js/main.js"></script>*@
+    <script src="~/js/VueMain.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/webBusines.css" />
        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3.0.3/dist/vue.global.prod.js"></script>
     <title>PUBLIC BUSINESS</title>
 
     <!-- Bootstrap core CSS -->
@@ -29,208 +33,171 @@
 
         
     <link rel="stylesheet" href="/publicBusiness/assets/css/login_register.css">
-    <div class="container">
-   
-  <!-- Modal -->
-  <div class="modal" id="myModal" >
-    <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <form class="box" method="post" action="/Home/Login">
-                            <h1>Ingresar</h1>
-                            <input type="text" name="Email" placeholder="Email"> 
-                            <input type="password" name="Contraseña"placeholder="Contraseña">
-                            <button type="submit" class="btn btn-dark"  >
-                                <div >
-                                 <a  class="btn btn-primary btn-user btn-block">
-                                Ingresar
-                                </a>
-                                </div>
-                                
-                            </button>
-       
-                            <div class="col-md-12 modal-footer">
-                                <ul class="social-network social-circle" >
-                                    <br>
-                                    
-                                    <a type="button"  class="active"  data-dismiss="modal" data-toggle="modal" data-target="#modalRegistroUsuario" id="custom-modal" data-toggle="modal" ><b type="button" data-dismiss="myModal">Registrarse</b></a>
-                                </ul>
-                                  
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-          </div>
-     
-    </div>
-    <div class="modal" id="modalRegistroEmpresa" >
+    <div class="container">   
+      <!-- Modal -->
+      <div class="modal" id="myModal" >
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <form class="box" method="post" action="/Empresa/Create">
-                            <h1 class="white-button">Registrar Empresa</h1>
-                            <input type="text" name="Email" placeholder="Email"> 
-                            <input type="text" name="NombreComercial"placeholder="Nombre Comercial">
-                            <input type="text" name="Telefono" placeholder="Telefono"> 
-                            <input type="password" name="Contraseña"placeholder="Contraseña">
-                            
-                            <button type="submit" class="btn btn-dark"  >
-                                <div >
-                                 <a  class="btn btn-primary btn-user btn-block">
-                                Registrarse
-                                </a>
-                                </div>
-                                
-                            </button>
-                       
-                            <div class="col-md-12 modal-footer">
-                                <ul class="social-network social-circle" >
-                                    <br>
-                                    
-                                    <a type="button" class="main-white-button" data-dismiss="modal"><b >Cerrar</b></a>
-                                </ul>
-                                  
-                            </div>
-                    
-                        </form>
-                    </div>
-                </div>
-            </div>
-          </div>
-     
-    </div>
-    <div class="modal" id="modalRegistroUsuario" >
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <form class="box" method="post" action="/Home/Login">
-                            <h1>Registrar</h1>
-                            <input type="text" name="Email" placeholder="Email"> 
-                            <input type="password" name="Contraseña"placeholder="Contraseña">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" >
+                    <div class="box"  >
+                        <h1>Ingresar</h1>
+                            <div id="">
+                                <label class="col-md-12" style="color:#FF0000" id="labelLogin"></label>
+                               
+                            <v-form id="example-1"  >
+                                <div style="color:#0094ff" v-if="resp.text  == '4' || resp.text=='5'  ">{{ resp.content }}</div>
+                                <div style="color:#0094ff" v-if="resp.text  == '1'">{{ resp.content }}</div>   
+                                <input id="email" v-model="usuario.email" value="" type="text" name="email" placeholder="Email" > 
+                                <div style="color:#0094ff" v-if="resp.text  == '2'  ">{{resp.content}}</div>
+                                <input id="password" v-model="usuario.password" value="" type="password" name="password"placeholder="Contraseña"> 
+                                <a  v-on:click="procesarS" type="submit" class="btn btn-primary" id="btnLogin" >Ingresar</a>     
                              
-                            <button type="submit" class="btn btn-dark"  >
-                                <div >
-                                 <a  class="btn btn-primary btn-user btn-block">
-                                Registrarse
-                                </a>
-                                </div>
-                                
-                            </button>
-                       
-                           <div class="col-md-12 modal-footer">
-                                <ul class="social-network social-circle" >
-                                    <br>
-                                    
-                                    <a type="button" class="main-white-button" data-dismiss="modal"><b >Cerrar</b></a>
-                                </ul>
-                                  
-                            </div>
-                        </form>
+                            </v-form>
+                            </div> 
+                        <div class="col-md-12 modal-footer">
+                            <ul class="social-network social-circle" >
+                                <br>                                    
+                                <a   class="active"  data-dismiss="modal" data-toggle="modal" data-target="#modalRegistroUsuario" id="custom-modal"  ><b type="button" data-dismiss="myModal">Registrarse</b></a>
+                            </ul>                                  
+                        </div>
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
+        </div>
      
-    </div>
-  </div>
- 
+      </div>
+        <div class="modal" id="modalRegistroEmpresa" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="box">
+                                 <h1 class="white-button">Registrar Empresa</h1>
+                                  <v-form id="RegistroEmpresaForm" >
+                     
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'Email'">{{ resp.Message }}</div> 
+                                    <input id="email" v-model="empresa.Email" value="" type="text" name="email" placeholder="Email" > 
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'NombreComercial'">{{ resp.Message }}</div>                                
+                                    <input type="text" v-model="empresa.NombreComercial" name="NombreComercial" placeholder="Nombre Comercial">
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'Telefono'">{{ resp.Message }}</div>
+                                    <input type="text" v-model="empresa.Telefono" name="Telefono" placeholder="Telefono"> 
+                                     <div style="color:#0094ff" v-if="resp.Error  == 'Contraseña'">{{ resp.Message }}</div>
+                                    <input type="password" v-model="empresa.Password" name="Contraseña"placeholder="Contraseña">
+                            
+                                    <button type="submit" class="btn btn-dark"  >
+                                        <div >
+                                         <a  v-on:click="createEmpresa"  class="btn btn-primary btn-user btn-block">
+                                        Registrarse
+                                        </a>
+                                        </div>                                
+                                    </button>                       
+                                    <div class="col-md-12 modal-footer">
+                                        <ul class="social-network social-circle" >
+                                            <br>                                    
+                                            <a type="button" class="main-white-button" data-dismiss="modal"><b >Cerrar</b></a>
+                                        </ul>
+                                  
+                                    </div>
+                    
+                            </v-form>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+              </div>
+     
+        </div>
+        <div class="modal" id="modalRegistroUsuario" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="box" >
+                                <h1>Registrar</h1>
+                                <v-form id="RegistroUserForm">
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'Nombre'">{{ resp.Message }}</div>
+                                    <input type="text" v-model="user.Nombre" name="Nombre" placeholder="Nombre"> 
 
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'Email'">{{ resp.Message }}</div>
+                                    <input type="text" v-model="user.Email" name="Email" placeholder="Email"> 
+
+                                    <div style="color:#0094ff" v-if="resp.Error  == 'Contraseña'">{{ resp.Message }}</div>
+                                    <input type="password" v-model="user.Password" name="Contraseña"placeholder="Contraseña">                             
+                                    <button type="submit" class="btn btn-dark"  >
+                                    <div >
+                                     <a  v-on:click="createUser"   class="btn btn-primary btn-user btn-block">
+                                    Registrarse
+                                    </a>
+                                    </div>
+                                
+                                </button>
+                                </v-form>
+                                
+                       
+                               <div class="col-md-12 modal-footer">
+                                    <ul class="social-network social-circle" >
+                                        <br>
+                                    
+                                        <a type="button" class="main-white-button" data-dismiss="modal"><b >Cerrar</b></a>
+                                    </ul>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+     
+        </div>
+  
+    </div>
+      <script>
+         
+   
+        
+      </script>
+      
 </head>
 <body>
       
     <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
        <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="/home/index" class="logo" style="border-radius: 5px;">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li><a href="/home/index" class="active"> <b>Inicio</b> </a></li>
-              <li><a type="button"  class="active"   data-toggle="modal" data-target="#modalRegistroEmpresa" id="custom-modal" data-toggle="modal" > <b>Registra tu Negocio</b> </a></li>
-              <li><div type="button" class="btn main-white-button" data-toggle="modal" data-target="#myModal" id="custom-modal" data-toggle="modal"><a><i class="fa fa-sign-in"></i>Ingresar</a></div></li> 
-            </ul>        
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
+           <div class="row">
+                <div class="col-12">
+                      <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/home/index" class="logo" style="border-radius: 5px; width:130px; height:60px">
+                             
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                          <li><a href="/home/index" class="active"> <b>Inicio</b> </a></li>
+                          <li><a type="button"  class="active"   data-toggle="modal" data-target="#modalRegistroEmpresa" id="custom-modal" data-toggle="modal" > <b>Registra tu Negocio</b> </a></li>
+                          <li><div type="button" class="btn main-white-button" data-toggle="modal" data-target="#myModal" id="custom-modal" data-toggle="modal"><a><i class="fa fa-sign-in"></i>Ingresar</a></div></li> 
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
 
-          </nav>
-          <!-- Modal -->
+                      </nav>
+                  <!-- Modal -->
 
-        </div>
-      </div>
-    </div>
+                </div>
+          </div>
+     </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-       <div class="modal fade" id="LogIn">
-        <div class="modal-dialog form-dark" role="document">
-
-            <div class="modal-content card card-image img-fluid" style="background-image: url('https://www.gratistodo.com/wp-content/uploads/2017/02/Casas-Modernas-7.jpg');">
-                <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
-
-                    <div class="modal-header text-center pb-4">
-                        <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
-                            <strong>INGRESAR</strong> <a class="green-text font-weight-bold"><strong></strong></a>
-                        </h3>
-                        <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                       
-                        <form method="post" action="/Home/Login" class="form1">
-                            @Html.ValidationMessage("Cuenta")
-                            <div class="md-form mb-5">
-                                <label style="color:cornflowerblue" data-error="wrong" data-success="right" for="Form-email5">Tu correo electronico</label>
-                                <input type="email" id="Email" class="form-control validate white-text col-md-12" ¨placeholder=" " name="Email">
-
-                            </div>
-                            <div class="md-form pb-3">
-                                <label style="color:cornflowerblue" data-error="wrong" data-success="right" for="Form-pass5">Tu contraseña</label>
-                                <input type="password" id="Password" class="form-control validate white-text col-md-12" ¨placeholder="" name="Password">
-
-                            </div>
-                            <div class="row d-flex align-items-center mb-4 ">
-                                <div class="text-center mb-3 col-md-12">
-                                    <button id="BottonIngresarLogin" type="submit" class="btn btn-success btn-block btn-rounded z-depth-1">Ingresar</button>
-                                </div>
-                            </div>
-                            <h1 id="modalLogin"></h1>
-                        </form>
-                        <div class="row">
-
-
-                            <div class="col-md-12">
-                                <p class="font-small white-text d-flex justify-content-end">
-                                    ¿Nuevo en HousesInPeru? <a href="/Home/Registro" class="green-text ml-1 font-weight-bold">
-                                        Registrarse
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
+    
   
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -248,6 +215,10 @@
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/VueMain.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

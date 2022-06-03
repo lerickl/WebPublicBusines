@@ -1,0 +1,149 @@
+﻿/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+*/
+
+
+.er_sombra_Produc {
+    background-color: #85929E;
+    top: 22em;
+    position: absolute;
+    
+    width: 86%;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 10px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
+}
+    .er_sombra_Produc img {
+        width:280px;
+        height:280px;
+        
+    }
+
+    .er_sombra_Produc hr {
+        border-top: 1px solid #fff;
+        box-shadow: 2px 2px 5px #999;
+    }
+@media only screen and (max-width: 380px) {
+    .er_sombra_Produc {
+        top: 38em;
+    }
+ 
+}
+ 
+@media only screen and (max-width: 1241px) {
+    .er_sombra_Produc {
+        top: 23em;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (min-width:701px) and (max-width:766px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (min-width:766px) and (max-width:767px) {
+    .er_sombra_Produc {
+        top: 32em;
+    }
+}
+@media only screen and (min-width:767px) and (max-width:800px) {
+    .er_sombra_Produc {
+        top: 22em;
+    }
+}
+ 
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+    display:flex;
+    width: auto;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0b1721;
+}
+
+.form {
+    width: 100%;
+    height: 50px;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: #fff;
+    padding-top:20px;
+    border: none;
+    outline: 0px;
+}
+
+    .form .lbl-nombre {
+        transform: translateY(50%);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        border-bottom: 1px solid #b6ff00;
+    }
+
+.form .lbl-nombre:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid #2ecece;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+}
+.text-nomb {
+    color: white;
+}
+.form input:focus + .lbl-nombre .text-nomb, .form input:valid + .lbl-nombre .text-nomb {
+    transform: translateY(-200%);
+    font-size: 14px;
+    color: #2ecece;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px) {
+    .form {
+        width: 85%;
+    }
+}

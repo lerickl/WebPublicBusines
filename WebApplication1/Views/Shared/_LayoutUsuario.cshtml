@@ -3,61 +3,167 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
     <meta charset="UTF-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script src="~/js/main.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <link href="/css/webBusines.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css" integrity="sha512-OivR4OdSsE1onDm/i3J3Hpsm5GmOVvr9r49K3jJ0dnsxVzZgaOJ5MfxEAxCyGrzWozL9uJGKz6un3A7L+redIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" integrity="sha512-xX2rYBFJSj86W54Fyv1de80DWBq7zYLn2z0I9bIhQG+rxIF6XVJUpdGnsNHWRa6AvP89vtFupEPDP8eZAtu9qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="/css/test.css">
     <title>Public Business</title>
-
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/publicBusiness/assets/css/publicBusiness.css">
+    <!-- Additional CSS Files -->
+@*    <link rel="stylesheet" href="/publicBusiness/assets/css/publicBusiness.css"/>*@
+    <link rel="stylesheet" href="~/css/webBusines.css" />
+    <link rel="stylesheet" href="/publicBusiness/assets/css/fontawesome.css"> 
+    <link rel="stylesheet" href="/publicBusiness/assets/css/animated.css">
+    <link rel="stylesheet" href="/publicBusiness/assets/css/owl.css">
+    <link rel="stylesheet" href="~/publicBusiness/assets/js/webbusiness.js"/>
     <!-- Custom fonts for this template-->
     <link href="/publicBusiness/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/publicBusiness/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
   
+    
 </head>
-<body>
-  
-   
 
-      </div>
-         
+
+<body>   
+    
+     <header class="er_nav_er " data-wow-duration="0.75s" data-wow-delay="0s">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+              
+              <a class=" logo navbar-brand" href="#"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                      aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/usuario/index">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        Home <span class="sr-only">(current)</span>
+                        
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    
+                    <a class="nav-link" href="/usuario/Dashboard"> 
+                         <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        Dashboard</a>
+                  </li>
+                 
+                  <li class="nav-item">
+                    <a class="nav-link  " href="/usuario/Servicios"><i class="fa fa-puzzle-piece" aria-hidden="true"></i>
+                        Servicios</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link  " href="/usuario/Productos"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        Productos</a>
+                  </li>
+                    <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                      Buscar</button>
+                  
+                </form>
+                </ul>
+                <ul class="navbar-nav mr-auto" >
+                    <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >    
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                          </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/usuario/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                   <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    Configuración de Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.html" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar Sesión
+                                </a>
+                            </div>
+                    </li>
+                </ul>
+                <ul>
+                    
+                </ul>
+                 
+              </div>
+            </nav>
+   
+  
+    </header>            
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
-   
-
         </div>
-  
-    
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   
-        <script src="/publicBusiness/vendor/jquery/jquery.min.js"></script>
-        <script src="/publicBusiness/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/publicBusiness/assets/js/owl-carousel.js"></script>
+         <!-- Footer -->
+           @*<footer style="margin-bottom:10px;bottom:auto;" class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Public Business 2022</span>
+                </div>
+            </div>
+        </footer>*@
+        <!-- End of Footer -->
+             <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Seguro que desea salir?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Seleccione cerrar sesión para salir.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="/home/index">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="/publicBusiness/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>        
         <script src="/publicBusiness/assets/js/animation.js"></script>
         <script src="/publicBusiness/assets/js/imagesloaded.js"></script>
         <script src="/publicBusiness/assets/js/custom.js"></script>
+        <link href="/css/webBusines.css" rel="stylesheet">
         <link href="/publicBusiness/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        
-      >
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>    
         <script src="/publicBusiness/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
         <!-- Core plugin JavaScript-->
         <script src="/publicBusiness/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Custom scripts for all pages-->
@@ -69,6 +175,17 @@
         <script src="/publicBusiness/dashboard/js/demo/chart-pie-demo.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/publicBusiness/dashboard/vendor/jquery/jquery.min.js"></script>    
+        <!-- Core plugin JavaScript-->
+        <script src="/publicBusiness/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="/publicBusiness/dashboard/js/sb-admin-2.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="/publicBusiness/dashboard/vendor/chart.js/Chart.min.js"></script>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="~/js/main.js"></script>
+        <link rel="stylesheet" href="~/css/web.css"/>
         @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

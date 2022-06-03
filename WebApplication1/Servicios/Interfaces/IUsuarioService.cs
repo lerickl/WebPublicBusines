@@ -7,11 +7,9 @@ namespace WebApplication1.Servicios.Interfaces
     {
         void AddUsuario(Usuario usuario);
         Usuario GetUsuarioByID(int? IdUsuario);
-
         IEnumerable<Usuario> GetAllUsers();
         Usuario GetUsuarioByEmailAndPassword(string correo, string clave);
         //void AddUsuario(UsuarioViewModel uservm);
-
         void EditarUsuario(int idUser, Usuario user);
     }
 }

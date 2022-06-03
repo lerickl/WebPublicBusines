@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+@{ Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";}
+
+<body>  
+   
+ <div class="">
+    <div class="container">
+      <div class="row">           
+          <div class="er_cont_User ">
+            <div class="er_sombra_User">
+                <div class="container">
+                    <section class="section">
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-12  " style="font-weight: bold; color:white ">
+                                        <h1>Perfil de Empresa</h1>
+                                        <hr />
+                                    </div>
+                                    <form asp-action="Profile" asp-controller="usuario" method="post" enctype="multipart/form-data" >
+                                        <div class="row">
+                                        @{
+                                            if (ViewBag.empresa.ImagenEmpresaIurl==null)
+                                            {
+                                            <div class="col-md-4">
+                                                <div class="er_card_imgPerfil">
+                                                    <row id="preview_imgPerfil">
+                                                        <img id="ImgPerfil1" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" />
+                                                    </row>
+                                                    <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
+                                                    <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
+                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                </div>
+                                            </div> 
+
+                                            }
+                                            else
+                                            {
+                                            <div class="col-md-4">
+                                                <div class="er_card_imgPerfil">
+                                                    <row id="preview_imgPerfil">
+                                                        <img id="ImgPerfil1" src="@ViewBag.empresa.ImagenEmpresaIurl" />
+                                                    </row>
+                                                    <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
+                                                    <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
+                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                </div>
+                                            </div>             
+                                            }
+                                        }
+                                            
+                                            <div class="col-md-8">
+                                                <div class="row">
+
+                                                    <div class="col-md-4 ">                                                        
+                                                        <div class="form1 md-form  ">                                                          
+                                                            <input type="text" name="NombreComercial" value="@ViewBag.empresa.NombreComercial" required >
+		                                                    <label class="er_lbl-nombre"for="NombreComercial">
+			                                                    <span class="er_text-nomb">Nombre Comercial</span>
+		                                                    </label>                                                   
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form1 md-form  ">
+                                                            <input type="text" name="Ruc" value="@ViewBag.empresa.Ruc" required  >
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb">Ruc</span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form1 md-form ">
+                                                            <input type="text" name="Direccion" value="@ViewBag.empresa.Direccion" required>
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb">Direccion</span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                     <div class="col-md-4">
+                                                        <div class="form1 md-form ">
+                                                            <input type="text" name="Email"  value="@ViewBag.empresa.Email" required>
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb">Email</span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+                                                      <div class="col-md-4">
+                                                        <div class="form1 md-form ">
+                                                            <input type="text" name="Telefono"  value="@ViewBag.empresa.Telefono" required >
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb">Telefono</span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+                                               @*     <div class="col-md-4">
+                                                        <div class="md-form form">
+                                                            <input type="date" value=" "  class="form-control" ¨placeholder="" name="FechaNacimiento" id="FechaNacimiento" />
+                                                            <label class="lbl-nombre">
+			                                                    <span class="text-nomb">Fecha de Nacimiento</span>
+		                                                    </label>
+                                                        </div>
+                                                    </div>*@
+                                                    
+
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Contraseña: ********</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button style="background:#fff" class=" btn purple-gradient btn-rounded waves-effect waves-light">Cambiar Contraseña</button>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <button style="background:#fff" type="submit" class=" btn blue-gradient btn-rounded waves-effect waves-light">Guardar</button>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <hr />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>   
+      </div>
+    </div>
+ </div>
+</body>
+
+ 

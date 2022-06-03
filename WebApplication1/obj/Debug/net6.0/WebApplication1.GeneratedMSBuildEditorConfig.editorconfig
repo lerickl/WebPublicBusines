@@ -15,8 +15,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\erick\source\repos\WebPublicBusines\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/AddProducto.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxBZGRQcm9kdWN0by5jc2h0bWw=
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/addproducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxhZGRwcm9kdWN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/AddServicio.cshtml]
@@ -35,8 +35,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/Produc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxQcm9kdWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/Productos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxQcm9kdWN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/serv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxzZXJ2LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/Servicios.cshtml]
@@ -67,16 +79,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRFbXByZXNhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Shared/_LayoutTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Shared/_LayoutUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRVc3VhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/addproducto.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xhZGRwcm9kdWN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/dashboard.cshtml]
@@ -87,12 +99,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Produc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcm9kdWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Product.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcm9kdWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Productos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcm9kdWN0b3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/serv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xzZXJ2LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Servicios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xTZXJ2aWNpb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1x0ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/_ViewImports.cshtml]

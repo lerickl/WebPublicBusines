@@ -1,49 +1,85 @@
 ﻿using WebApplication1.DataDb;
 using WebApplication1.Servicios.Interfaces;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Servicios
 {
     public class SessionService : ISessionService
     {
-        private readonly HttpContext context;
-        private readonly UsuarioService UserServ;
+        private readonly IHttpContextAccessor _context;
+        //private readonly UsuarioService UserServ;
+        //private readonly WebeOContext _dbContext;
         public SessionService()
         {
-             
-            WebeOContext conexion = new WebeOContext();
-            UserServ = new UsuarioService(conexion);
+            //this._dbContext = dbContext;
+            //this._context = IHttpContextAccessor.HttpContext.c;
+            //WebeOContext conexion = new WebeOContext();
+            //UserServ = new UsuarioService(conexion);
         }
-        public void GuardarSession(Usuario usuario)
+        public void GuardarSessionUsr(Usuario usuario, IHttpContextAccessor _context)
         {
-            throw new NotImplementedException();
+            if (usuario != null) {
+                _context.HttpContext.Session.SetString("usuario", Convert.ToString(usuario.UsuarioId));
+                _context.HttpContext.Session.SetString("Nombre", usuario.Nombres);
+                _context.HttpContext.Session.SetString("TipoUsuario", "User");
+            }
+           
+        }
+        public void GuardarSessionEmpr(Empresa empr, IHttpContextAccessor _context)
+        {
+            _context.HttpContext.Session.SetString("usuario", Convert.ToString(empr.EmpresaId));
+            _context.HttpContext.Session.SetString("Nombre", empr.NombreComercial);
+            _context.HttpContext.Session.SetString("TipoUsuario", "Empr");
+        }
+        public bool IsLogged()
+        {
+            if (_context.HttpContext.Session.GetString("usuario") != null && _context.HttpContext.Session.GetString("TipoUsuario") != null)
+                return true;
+            return false;
+        }
+        public bool EsEmpresa()
+        {
+            if (IsLogged())
+            {
+                string tipUsr = _context.HttpContext.Session.GetString("TipoUsuario");
+                if (tipUsr == "Empr")
+                    return true;
+            }return false;
+        }
+        public bool EsUsuario()
+        {
+            if (IsLogged())
+            {
+                string tipUsr = _context.HttpContext.Session.GetString("TipoUsuario");
+                if (tipUsr == "User")
+                    return true;
+            }
+            return false;
         }
         public int ConvertirSessionIdAIntId()
         {
+
             throw new NotImplementedException(); ;
         }
-
-        public bool EsEmpresa()
-        {
-            throw new NotImplementedException();
-        }
-
+         
         public bool EsSuSession(int? IdUsuario)
         {
-            throw new NotImplementedException();
+            if (IsLogged())
+            {
+                int usrId = Convert.ToInt32(_context.HttpContext.Session.GetString("usuario"));
+                if (usrId != IdUsuario)
+                    return false;
+            
+            }
+            return true;
         }
 
-        public bool EsUsuario()
-        {
-            throw new NotImplementedException();
-        }
+        
 
        
 
-        public bool IsLogged()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public void LimpiarSession()
         {

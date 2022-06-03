@@ -5,34 +5,46 @@ namespace WebApplication1.Servicios.Interfaces
 {
     public interface ICloudinaryService
     {
-       // string uploadImg(HttpPostedFileBase imagePath);
+        string uploadImg(IFormFile imagePath);
     }
     public class CloudinaryService : ICloudinaryService
     {
         public static Cloudinary cloudinary;
         Account account = new Account(
-                "casas",
-                "663463693755741",
-                "oETSBAsbZc4l_NcThWacRIGtXXA"
+                "lbusinesscloudl",
+                "979427328292796",
+                "i1U9RGs6KgIzavbQDotoxzWbu9Q"
             );
         public CloudinaryService()
         {
+
             cloudinary = new Cloudinary(account);
+            //cloudinary.Upload();
+
+
         }
-
-       /* public string uploadImg(HttpPostedFileBase imagePath)
-        {
-
-            var uploadImg = new ImageUploadParams()
+        public string uploadImg(IFormFile ImagePath) {
+            var uploading = new ImageUploadParams();
+            var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(imagePath.FileName, imagePath.InputStream)
+                File = new FileDescription(ImagePath.Name,ImagePath.OpenReadStream())
             };
 
-            var uploadResult = cloudinary.Upload(uploadImg).Uri;
-            var dato = uploadResult;
-            return dato.ToString();
+            var uploadResult = cloudinary.Upload(uploadParams).Uri;
 
+            return uploadResult.ToString();
+        }
+        //public string uploadImg(FileManagement imagePath)
+        //{
 
-        }*/
+        //    var uploadImg = new ImageUploadParams()
+        //    {
+        //        File = new FileDescription(imagePath.FileName, imagePath.)
+        //    };
+
+        //    var uploadResult = cloudinary.Upload(uploadImg).Uri;
+        //    var dato = uploadResult;
+        //    return dato.ToString();
+        //}
     }
 }

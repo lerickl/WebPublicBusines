@@ -4,12 +4,12 @@ namespace WebApplication1.Servicios.Interfaces
 {
     public interface ICategoriaService
     {
-        void AddUsuario(Categoria categoria);
-        Categoria GetCategoriaByID(int? IdCategoria);
+        void AddUsuario(CategoriaEmpresa categoria);
+        CategoriaEmpresa GetCategoriaByID(int? IdCategoria);
 
         IEnumerable<Categoria> GetAllCategoria();
 
-        void EditarCategoria(int idCategoria, Categoria categoria);
+        void EditarCategoria(int idCategoria, CategoriaEmpresa categoria);
 
     }
 }

@@ -11,11 +11,25 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>(); 
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
-
-builder.Services.AddSession(options => 
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddScoped<IImagenService, ImagenService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IServicioService, ServicioService>();
+builder.Services.AddScoped<IValidacionesService, ValidarService>();
+builder.Services.AddScoped<ICategoriaEmpresa, CategoriaEmpresaService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddMvc();
+//builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
 {
-    options.Cookie.Name = ".AdventureWarks.Session";
-    options.IOTimeout = TimeSpan.FromSeconds(10);
+     
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+  
     options.Cookie.IsEssential = true;
 
 });
@@ -35,6 +49,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+//
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

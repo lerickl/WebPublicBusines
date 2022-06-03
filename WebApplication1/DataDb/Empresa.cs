@@ -14,5 +14,6 @@ namespace WebApplication1.DataDb
         public string? Email { get; set; }
         public string? Contraseña { get; set; }
         public int? CategoriaId { get; set; }
+        public string? ImagenEmpresaIurl { get; set; }
     }
 }

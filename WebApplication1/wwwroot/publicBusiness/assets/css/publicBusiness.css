@@ -275,28 +275,52 @@ header
   background: transparent;
 }
 
-.header-area .main-nav a.logo {
-  background-image: url(../images/logo.png);
-  width: 166px;
-  height: 58px;
-  display: inline-block;
-  margin-top: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
+    .header-area .main-nav a.logo {
+        background-image: url(/PNG/logo_transparent.png);
+        width: 166px;
+        height: 58px;
+        display: inline-block;
+        margin-top: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
 
 .background-header .main-nav a.logo {
-  background-image: url(../images/logo.png);
-  width: 164px;
-  height: 58px;
-  display: inline-block;
-  margin-top: 10px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+    background-image: url(/PNG/logo.png);
+    width: 164px;
+    height: 58px;
+    display: inline-block;
+    margin-top: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.logo {
+    background-image: url(/PNG/logo_transparent.png);
+    width: 150px;
+    height: 45px;
+    display: inline-block;
+    margin-top: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.logo {
+    background-image: url(/PNG/logo.png);
+    width: 150px;
+    height: 45px;
+     
+    display: inline-block;
+    margin-top: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 .background-header .main-nav .nav {

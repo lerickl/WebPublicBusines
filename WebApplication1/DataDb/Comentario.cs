@@ -9,5 +9,8 @@ namespace WebApplication1.DataDb
         public string? Contenido { get; set; }
         public int? UsuarioId { get; set; }
         public int? EmpresaId { get; set; }
+        public int? ProductoId { get; set; }
+        public int? ServicioId { get; set; }
+        public string? Abierto { get; set; } 
     }
 }

@@ -4,7 +4,9 @@ namespace WebApplication1.Servicios.Interfaces
 {
     public interface ISessionService
     {
-        void GuardarSession(Usuario usuario);
+        void GuardarSessionUsr(Usuario usuario, IHttpContextAccessor _context);
+
+        void GuardarSessionEmpr(Empresa empr, IHttpContextAccessor _context);
         void LimpiarSession();
         bool IsLogged();
         bool EsEmpresa();

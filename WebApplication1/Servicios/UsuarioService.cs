@@ -37,9 +37,6 @@ namespace WebApplication1.Servicios
             _db.SaveChanges();
 
         }
-
-
-
         public Usuario GetUsuarioByEmailAndPassword(string correo, string clave)
         {
             Usuario user = _db.Usuarios.Where(u => u.Email == correo).FirstOrDefault();
