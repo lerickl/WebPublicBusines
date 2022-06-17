@@ -12,6 +12,10 @@ namespace WebApplication1.Servicios.Interfaces
         IEnumerable<Servicio> GetAllServicio();
         IList<Servicio> GetAllServicioListById(int? id);
 
-        void EditarServicio(int idServicio, Servicio servicio);
+        void EditarServicio(Servicio servicio);
+
+        public IList<Servicio> search(Search? search);
+        public bool DeletServicio(int id, int? idEmpresa);
+        
     }
 }

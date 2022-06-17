@@ -17,7 +17,8 @@
                                         <h1>Perfil de Empresa</h1>
                                         <hr />
                                     </div>
-                                    <form asp-action="Profile" asp-controller="usuario" method="post" enctype="multipart/form-data" >
+                                    <form asp-action="Profile" asp-controller="empresa" method="post" enctype="multipart/form-data" >
+                                        <input id="isperfil" name="empresa.isperfil" value="true" hidden/>
                                         <div class="row">
                                         @{
                                             if (ViewBag.empresa.ImagenEmpresaIurl==null)
@@ -29,7 +30,7 @@
                                                     </row>
                                                     <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                    <input id="imgperfil"  name="empresa.imgperfil" type="file"  />
                                                 </div>
                                             </div> 
 
@@ -43,7 +44,7 @@
                                                     </row>
                                                     <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                    <input id="imgperfil"  name="empresa.imgperfil" type="file" value="1" />
                                                 </div>
                                             </div>             
                                             }
@@ -54,7 +55,7 @@
 
                                                     <div class="col-md-4 ">                                                        
                                                         <div class="form1 md-form  ">                                                          
-                                                            <input type="text" name="NombreComercial" value="@ViewBag.empresa.NombreComercial" required >
+                                                            <input type="text" name="empresa.NombreComercial" value="@ViewBag.empresa.NombreComercial" required >
 		                                                    <label class="er_lbl-nombre"for="NombreComercial">
 			                                                    <span class="er_text-nomb">Nombre Comercial</span>
 		                                                    </label>                                                   
@@ -62,7 +63,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form1 md-form  ">
-                                                            <input type="text" name="Ruc" value="@ViewBag.empresa.Ruc" required  >
+                                                            <input type="text" name="empresa.Ruc" value="@ViewBag.empresa.Ruc" required  >
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Ruc</span>
 		                                                    </label>
@@ -70,7 +71,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="Direccion" value="@ViewBag.empresa.Direccion" required>
+                                                            <input type="text" name="empresa.Direccion" value="@ViewBag.empresa.Direccion" required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Direccion</span>
 		                                                    </label>
@@ -82,7 +83,7 @@
                                                 <div class="row">
                                                      <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="Email"  value="@ViewBag.empresa.Email" required>
+                                                            <input type="text" name="empresa.Email"  value="@ViewBag.empresa.Email" required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Email</span>
 		                                                    </label>
@@ -90,22 +91,13 @@
                                                     </div>
                                                       <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="Telefono"  value="@ViewBag.empresa.Telefono" required >
+                                                            <input type="text" name="empresa.Telefono"  value="@ViewBag.empresa.Telefono" required >
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Telefono</span>
 		                                                    </label>
                                                            </div>
                                                     </div>
-                                               @*     <div class="col-md-4">
-                                                        <div class="md-form form">
-                                                            <input type="date" value=" "  class="form-control" ¨placeholder="" name="FechaNacimiento" id="FechaNacimiento" />
-                                                            <label class="lbl-nombre">
-			                                                    <span class="text-nomb">Fecha de Nacimiento</span>
-		                                                    </label>
-                                                        </div>
-                                                    </div>*@
-                                                    
-
+                                           
                                                 </div>
                                                 <hr />
                                                 <div class="row">

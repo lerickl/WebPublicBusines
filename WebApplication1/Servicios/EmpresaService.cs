@@ -10,14 +10,14 @@ namespace WebApplication1.Servicios
         {
             this._db = db;
         }
-
+       
         public void addEmpresa(Empresa empresa)
         {
             _db.Empresas.Add(empresa);
             _db.SaveChanges();
         }
 
-        public void EditarEmpresa(int IdEmpresa, Empresa Emprs)
+        public void EditarEmpresa(int? IdEmpresa, Empresa Emprs)
         {
             var temp = _db.Empresas.Where(c => c.EmpresaId == IdEmpresa).FirstOrDefault();
             temp.NombreComercial = Emprs.NombreComercial;
@@ -26,6 +26,7 @@ namespace WebApplication1.Servicios
             temp.Contraseña = Emprs.Contraseña;
             temp.Direccion= Emprs.Direccion;
             temp.Telefono= Emprs.Telefono;
+            temp.ImagenEmpresaIurl = Emprs.ImagenEmpresaIurl;
             _db.SaveChanges();
 
 

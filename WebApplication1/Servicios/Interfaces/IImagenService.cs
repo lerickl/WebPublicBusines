@@ -12,6 +12,7 @@ namespace WebApplication1.Servicios.Interfaces
         void DelImg(int id);
         public string AddImagenPerfil(UsuarioViewModel imagen, int? UserID);
         public string AddImagenProd(IFormFile imagen);
+        public string AddImagenServic(IFormFile image);
         string AddImagenPerfilEmpresa(EmpresaViewModel imagen, int? UserID);
         //List<JsonImagen> getAllImgs();
     }

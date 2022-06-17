@@ -17,6 +17,8 @@
                                         <hr />
                                     </div>
                                     <form asp-action="Profile" asp-controller="usuario" method="post" enctype="multipart/form-data" >
+                                       <input id="isperfil" name="usuario.isperfil" value="true" hidden/>
+                                        
                                         <div class="row">
                                         @{
                                             if (ViewBag.usuario.ImagenUserIurl==null)
@@ -28,7 +30,7 @@
                                                     </row>
                                                     <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                    <input id="imgperfil"  name="usuario.imgperfil" type="file"  />
                                                 </div>
                                             </div> 
 
@@ -42,7 +44,7 @@
                                                     </row>
                                                     <label for="imgperfil" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDel" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfil"  name="imgperfil" type="file"  />
+                                                    <input id="imgperfil"  name="usuario.imgperfil" type="file"  />
                                                 </div>
                                             </div>             
                                             }
@@ -52,7 +54,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4 ">                                                        
                                                         <div class="form1 md-form  ">                                                          
-                                                            <input type="text" name="Nombres" value="@ViewBag.usuario.Nombres" required>
+                                                            <input type="text" name="usuario.Nombres" value="@ViewBag.usuario.Nombres" required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Nombre</span>
 		                                                    </label>                                                   
@@ -60,7 +62,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="ApellidoPaterno" value="@ViewBag.usuario.ApellidoPaterno"  required>
+                                                            <input type="text" name="usuario.ApellidoPaterno" value="@ViewBag.usuario.ApellidoPaterno"  required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Apellido Paterno</span>
 		                                                    </label>
@@ -68,7 +70,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="ApellidoMaterno" value="@ViewBag.usuario.ApellidoMaterno" required>
+                                                            <input type="text" name="usuario.ApellidoMaterno" value="@ViewBag.usuario.ApellidoMaterno" required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Apellido Materno</span>
 		                                                    </label>
@@ -80,7 +82,7 @@
                                                 <div class="row">
                                                      <div class="col-md-4">
                                                         <div class="form1 md-form ">
-                                                            <input type="text" name="Email"  value="@ViewBag.usuario.Email" required>
+                                                            <input type="text" name="usuario.Email"  value="@ViewBag.usuario.Email" required>
 		                                                    <label class="er_lbl-nombre">
 			                                                    <span class="er_text-nomb">Email</span>
 		                                                    </label>

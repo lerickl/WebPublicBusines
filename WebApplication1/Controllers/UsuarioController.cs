@@ -14,13 +14,17 @@ namespace WebApplication1.Controllers
         private readonly IImagenService imagenService;
         private readonly IProductoService productoService;
         private readonly IServicioService servicioService;
+        private readonly IUsuarioService usuarioService;
+        private readonly ICategoriaService categoriaserv;
 
-        public UsuarioController(IAuthService _auth, ISessionService _sessionService, IImagenService _imagenService, IProductoService _productoService, IServicioService _servicioService) { 
+        public UsuarioController(IAuthService _auth, ISessionService _sessionService, IImagenService _imagenService, IProductoService _productoService, IServicioService _servicioService, IUsuarioService _usuarioService, ICategoriaService _categoriaserv) { 
             this.auth = _auth;
             this.sessionService = _sessionService;
             this.imagenService = _imagenService;
             this.productoService = _productoService;
             this.servicioService = _servicioService;
+            this.usuarioService = _usuarioService;
+            this.categoriaserv = _categoriaserv;
         }
 
         // GET: UsuarioController
@@ -28,16 +32,20 @@ namespace WebApplication1.Controllers
         {
             ViewBag.productos= productoService.GetAllProducts();
             ViewBag.servicios = servicioService.GetAllServicio();
+            ViewBag.categoria = categoriaserv.GetAllCategoria();
             return View();
         }
         public ActionResult dashboard()
         {
+        
             return View();
         }
         [HttpGet]
         public ActionResult Productos()
         {
             ViewBag.productos = productoService.GetAllProducts();
+            ViewBag.categoria = categoriaserv.GetAllCategoria();
+            ViewBag.servicios = servicioService.GetAllServicio();
             return View();
 
         }
@@ -47,127 +55,100 @@ namespace WebApplication1.Controllers
            
             return View();
         }
+        [HttpGet]
         public ActionResult Servicios()
         {
+            ViewBag.categoria = categoriaserv.GetAllCategoria();
             ViewBag.servicios=servicioService.GetAllServicio();
             return View();
         }
         [HttpGet]
         public ActionResult Profile()
         {
-            var user = auth.GetLogedUser();
+            var user=new Usuario();
+            try {
+                  user = auth.GetLogedUser();
+            }
+            catch (Exception e)
+            {
+                user = null;
+            }
+
             ViewBag.Usuario = user;
             return View();
        
         }
         [HttpPost]
-        public async Task<IActionResult> Profile(UsuarioViewModel usuario)
+        public IActionResult Profile(UsuarioViewModel usuario)
         {
-            Usuario usr = auth.GetLogedUser();
+
+            var usr = new Usuario();
+            try {
+                usr = auth.GetLogedUser();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+         
             usr.Nombres = usuario.Nombres;   
             usr.ApellidoPaterno = usuario.ApellidoPaterno;
             usr.ApellidoMaterno = usuario.ApellidoMaterno;
             usr.Email = usuario.Email;
-            usr.ImagenUserIurl=imagenService.AddImagenPerfil(usuario, usr.UsuarioId);             
-            
+            if (usuario.isperfil == "true")
+            {
+                usr.ImagenUserIurl = usr.ImagenUserIurl;
+            }
+            else
+            {
+                if (usuario.imgperfil == null)
+                {
+                    usr.ImagenUserIurl = null;
+                }
+                else
+                {
+                    usr.ImagenUserIurl = imagenService.AddImagenPerfil(usuario, usr.UsuarioId);
+
+                }
+            }
+            usuarioService.EditarUsuario(usr.UsuarioId,usr);
             ViewBag.usuario = usr;
            
             return View();
 
         }
-
         [HttpGet]
         public IActionResult test()
         {
             ViewBag.Usuario = new Usuario();
             return View();
-            #region session set area
-             
-            #endregion
-        }
+     
+        }        
         [HttpPost]
-        public async Task<IActionResult> test(data data)
-        {
-            if (data.imgperfil == null)
-                return View(data);
+        public IActionResult Valoracion(int valoracion) {
 
-            string uploadsFolder = Path.Combine("", "Your upload path");
-            string ImagePath = Guid.NewGuid().ToString() + "_" + data.name;
-            string filePath = Path.Combine(uploadsFolder, ImagePath);
-            using (FileStream fs = new FileStream(filePath, FileMode.Create))
-            {
-                await data.imgperfil.CopyToAsync(fs);
-            }
-            if (data != null)
-            {
-                 
-                //bookModel.CoverImageUrl = await UploadImage(folder, imgperfil);
-            }
-            
-            return View();
+
+            return Json("");
+        
         }
-    
-
         // GET: UsuarioController/Details/5
         public ActionResult Details()
         {
             return View();
         }
-
         // GET: UsuarioController/Create
         public ActionResult Create()
         {
             return View();
-        }
-
-        // POST: UsuarioController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        }                
         [HttpGet]
         public ActionResult AddProducto() {
         
             return View();
-        }
-        [HttpPost]
-        public ActionResult AddProducto(ProductoViewModel model)
-        {
-            ViewBag.producto=new ProductoViewModel();
-            return View();
-        }
-        // GET: UsuarioController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuarioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        }    
         [HttpGet]
         public IActionResult Produc(int id) {           
-            ViewBag.Product = productoService.GetProductById(id);
+            ViewBag.Product = productoService.GetProductByIdP(id);
             ViewBag.Comentarios = null;
             return View();
         }
@@ -179,25 +160,58 @@ namespace WebApplication1.Controllers
             ViewBag.serv = servicioService.GetServicioByID(id);
             return View();
         }
-        // GET: UsuarioController/Delete/5
-        public ActionResult Delete(int id)
+        
+
+        ///////////////////////////////////////
+        ///////////////////////////////////////
+        ///
+        [HttpGet]
+        public IActionResult search()
         {
+            ViewBag.productos = new List<Producto>();
+            ViewBag.categoria = categoriaserv.GetAllCategoria();
+            ViewBag.servicios = new List<Servicio>();
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Search(Search search)
+        {
+            var prod = productoService.search(search);
+            var serv = servicioService.search(search);
+            if (prod == null && serv == null)
+            {
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaserv.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+
+            }
+            if (prod != null && serv == null)
+            {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaserv.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+            }
+            if (prod == null && serv != null)
+            {
+
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaserv.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+            if (prod != null && serv != null)
+            {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaserv.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+
+            //var result = EmpresaService.Search(busqueda);   
+
             return View();
         }
 
-        // POST: UsuarioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

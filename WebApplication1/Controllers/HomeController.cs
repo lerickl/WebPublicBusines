@@ -14,23 +14,27 @@ namespace WebApplication1.Controllers
         private readonly ISessionService sessionService;
         private readonly IAuthService AuthService;
         private readonly IHttpContextAccessor _context;
-        private readonly ICategoriaEmpresa categoriaEmpresa;
         private readonly IValidacionesService validar;
-        public HomeController(IHttpContextAccessor context, IUsuarioService _userserv, IEmpresaService _EmpresaService, ISessionService _sessionService, IAuthService _AuthService, ICategoriaEmpresa _categoriaEmpresa, IValidacionesService _validar)
+        private readonly IProductoService productServ;
+        private readonly IServicioService ServicioServ;
+        private readonly ICategoriaService categoriaServ;
+        public HomeController(IHttpContextAccessor context, IUsuarioService _userserv, IEmpresaService _EmpresaService, ISessionService _sessionService, IAuthService _AuthService, IValidacionesService _validar, IProductoService _productServ, IServicioService _ServicioServ, ICategoriaService _categoriaServ)
         {
             this._context = context;
             this.userserv = _userserv;
             this.EmpresaService = _EmpresaService;
             this.sessionService = _sessionService;
-            this.AuthService = _AuthService;
-            this.categoriaEmpresa = _categoriaEmpresa;
+            this.AuthService = _AuthService;        
             this.validar = _validar;
+            this.productServ = _productServ;
+            this.ServicioServ = _ServicioServ;
+            this.categoriaServ = _categoriaServ;
         }
 
         public IActionResult Index()
         {
 
-
+            ViewBag.Categoria = categoriaServ.GetAllCategoria();
             return View();
         }
         [HttpGet]
@@ -131,8 +135,66 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult search()
+        {
+            ViewBag.productos = new List<Producto>();
+            ViewBag.categoria = categoriaServ.GetAllCategoria();
+            ViewBag.servicios = new List<Servicio>();
 
-     
-      
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Search(Search search)
+        {
+            var prod=productServ.search(search);
+            var serv = ServicioServ.search(search);
+            if (prod == null && serv == null)
+            {
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaServ.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+                
+            }
+            if (prod != null && serv == null) {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaServ.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+            }
+            if (prod == null && serv != null)
+            {
+
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaServ.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+            if (prod != null && serv != null)
+            {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaServ.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+           
+            
+            return View();
+        }
+        [HttpGet]
+        public IActionResult serv(int id) 
+        {
+            ViewBag.serv = ServicioServ.GetServicioByID(id);
+            return View();
+            
+        }
+        [HttpGet]
+        public IActionResult product(int id)
+        {
+            ViewBag.Product = productServ.GetProductByIdP(id);
+            return View();
+
+        }
+
+
     }
 }

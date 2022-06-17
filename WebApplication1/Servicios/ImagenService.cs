@@ -74,6 +74,8 @@ namespace WebApplication1.Servicios
             return null;
         }
 
+     
+
         public void DelImg(int id)
         {
             throw new NotImplementedException();

@@ -24,7 +24,7 @@ namespace WebApplication1.Servicios
             users = _db.Usuarios.ToList();
             return users;
         }
-        public void EditarUsuario(int idUser, Usuario user)
+        public void EditarUsuario(int? idUser, Usuario user)
         {
             var temp = _db.Usuarios.Where(x => x.UsuarioId == idUser).FirstOrDefault();
             temp.Nombres = user.Nombres;
@@ -33,7 +33,7 @@ namespace WebApplication1.Servicios
             temp.Email = user.Email;
             temp.Usuarioname = user.Usuarioname;
             temp.Contraseña = user.Contraseña;
-
+            temp.ImagenUserIurl = user.ImagenUserIurl;
             _db.SaveChanges();
 
         }

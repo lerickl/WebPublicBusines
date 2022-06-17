@@ -7,6 +7,7 @@
     <div class="er_cont_User">
           <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <hr />
                          <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">   </h1>
@@ -30,34 +31,36 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Descripción</th>
                                         <th>Precio</th>
-                                        <th>Categoria</th>
+                                        <th>Tipo Servicio</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Precio</th>
-                                        <th>Categoria</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </tfoot>
+                               
                                 <tbody>
                                 @foreach (var serv in ViewBag.servicios)
                                 {
                                     <tr>
+                                        @if (@serv.ImagenS == null)
+                                        {
+                                            <td><img style="width:100px; height:100px;" src="https://previews.123rf.com/images/bitontawan02/bitontawan021606/bitontawan02160600001/58946113-servicios-empresariales-globales-icono-y-s%C3%ADmbolo.jpg" /></td>
+                                        }else
+                                        {
+                                            <td><img style="width:100px; height:100px;" src="@serv.ImagenS"/></td>
+                                        }      
                                         <td>@serv.Nombre</td>
                                         <td>@serv.Descripcion</td>
                                         <td>S/@serv.Precio</td>
                                         <td>@serv.TipoServicio</td>
                                         <td style="width: 20px; text-align: center;">
-                                            <a href="/Usuario/serv?id=@serv.ServicioId"><i class="fa fa-edit"></i> </a>
+                                            <a href="/empresa/EditS?Id=@serv.ServicioId"><i class="fa fa-edit"></i> </a>
                                             <br>
-                                            <a href=""><i class="fa fa-trash-alt"></i> </a>
+                                         
+                                                <a href="/empresa/RemoveS?Id=@serv.ServicioId"><i class="fa fa-trash-alt"></i> </a>
+                                       
                                         </td>
                                     </tr>
                                 }

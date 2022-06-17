@@ -2,15 +2,13 @@
  @{ Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";}
 <html lang="en">
 
- 
-
 <body id="page-top">
 
  <div class="er_cont_User">
      <div class=" ">
           <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    <hr />
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"> </h1>
@@ -26,12 +24,12 @@
                 <div class=" shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Lista de productos</h6>
-                    </div>
-                    <div class="card-body">
+                          <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Descripción</th>
                                         <th>Precio</th>
@@ -39,44 +37,51 @@
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Precio</th>
-                                        <th>Categoria</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </tfoot>
+                               
                                 <tbody>
                                     @foreach(var produc in  ViewBag.productos)
 
                                     {
                                     <tr>
+                                        @if (@produc.ImagenP == null)
+                                        {
+                                            <td><img style="width:100px; height:100px;" src="https://png.pngtree.com/png-clipart/20190517/original/pngtree-commodity-icon-commercial-element-iconclothing-iconclothes-iconclothesiconclothinghatcoatshirtskirtshoesofacoatpantssock-png-image_4080072.jpg" /></td>
+                                        }else
+                                        {
+                                            <td><img style="width:100px; height:100px;" src="@produc.ImagenP"/></td>
+                                        }                                    
                                         <td>@produc.Nombre</td>
                                         <td>@produc.Descripcion</td>
                                         <td>S/ @produc.Precio</td>
-                                        @foreach(var categoria in ViewBag.categorias)
+                                        @if (produc.CategoriaId==null )
                                         {
-                                            @if (@categoria.CategoriaId == produc.CategoriaId)
-                                            {
-                                                <td>@categoria.Nombre</td>
-                                            }
+                                                <td>otros</td>
+                                        }else{
+                                                @foreach(var categoria in ViewBag.categorias)
+                                                {
+                                                    @if (@categoria.CategoriaId == produc.CategoriaId)
+                                                    {
+                                                        <td>@categoria.Nombre</td>
+                                                    }
+                                                }
                                         }
+                                          
                                         
                                         <td style="width: 20px; text-align: center;">
-                                            <a href=""><i class="fa fa-edit"></i> </a>
+                                            <a href="/empresa/EditP?Id=@produc.ProductoId"><i class="fa fa-edit"></i> </a>
                                             <br>
-                                            <a href=""><i class="fa fa-trash-alt"></i> </a>
+                                            <a href="/empresa/RemoveP?Id=@produc.ProductoId"><i class="fa fa-trash-alt"></i> </a>
                                         </td>
                                     </tr>
-
+                                    
                                     }
                                
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    </div>
+                  
                 </div>
 
 

@@ -12,7 +12,8 @@ namespace WebApplication1.Servicios.Interfaces
         Empresa GetEmpresaByEmailAndPassword(string correo, string clave);
         //void AddUsuario(UsuarioViewModel uservm);
 
-        void EditarEmpresa(int idUser, Empresa Emprs);
+        void EditarEmpresa(int? idUser, Empresa Emprs);
+       
 
     }
 }

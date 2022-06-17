@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+ @{ Layout = "~/Views/Shared/_LayoutEmpresa.cshtml";}
+
+<body>      
+ <div class="er_cont_User">
+    <div class="container">
+      <div class="row">           
+          <div class="  ">
+            <div class="er_sombra_Produc">
+                <div class="container">
+                    <section class="section">
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-12  " style="font-weight: bold; color:white ">
+                                        <h1>Editar Servicio</h1>
+                                        <hr />
+                                    </div>
+                                    <form asp-action="EditS" asp-controller="empresa" method="post" enctype="multipart/form-data" >
+                                        <div class="row">
+                                                <input name="service.ServicioId" value="@ViewBag.servicio.ServicioId" hidden/>
+                                                <input id="StatusEditImg" name="service.EditImg" value="false" hidden/> 
+                                                <div class="col-md-4">
+                                                <div class="er_card_imgPerfil">
+                                                    <row id="preview_imgPerfilServicio">
+                                                        @if (ViewBag.servicio.ImagenS==null)
+                                                        {
+                                                            <img class="image" id="ImgPerfil1PServicio" src="https://previews.123rf.com/images/bitontawan02/bitontawan021606/bitontawan02160600001/58946113-servicios-empresariales-globales-icono-y-s%C3%ADmbolo.jpg" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="image" id="ImgPerfil1PServicio" src="@ViewBag.servicio.ImagenS" />
+                                                        }
+                                                    </row>
+                                                    <label for="imgperfilServicio" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
+                                                    <label id="imgperfilDelServicio" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
+                                                    <input id="imgperfilServicio"  name="service.imgperfilServicio" type="file"   />
+                                                </div>
+                                            </div> 
+                                     
+                                            <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="form1 col-md-4  " >
+                                                        <input id="NombreProd" value="@ViewBag.servicio.Nombre" name="service.Nombre" type="text"  required>
+                                                        <label class="er_lbl-nombre"   for="Nombre">
+			                                                <span class="er_text-nomb">Nombre</span>
+		                                                </label>  
+                                                    </div>
+                                                    <div class="form1 col-md-4 ">                                                        
+                                                        <input type="text" name="service.Marca" value="@ViewBag.servicio.Precio"   required >
+		                                                <label class="er_lbl-nombre" data-error="wrong" data-success="right" >
+			                                                <span class="er_text-nomb">Marca</span>
+		                                                </label> 
+                                                    </div>
+                                                    <div class="form1 col-md-4">
+                                                        <input type="text" name="service.Descripcion" value="@ViewBag.servicio.Descripcion" required>
+		                                                <label class="er_lbl-nombre">
+			                                                <span class="er_text-nomb">Descripcion</span>
+		                                                </label>
+
+                                                    </div>
+                                            
+                                                    <div class="form1 col-md-4 ">                                                      
+                                                        <input type="number" name="service.Precio"required value="@ViewBag.servicio.Precio"  >
+		                                                <label class="er_lbl-nombre">
+			                                                <span class="er_text-nomb">Precio</span>
+		                                                </label>                                                
+                                                    </div>
+                                                     <div class="form1 col-md-4 ">                                                      
+                                                        <input type="text" name="service.TipoServicio"required value="@ViewBag.servicio.TipoServicio"  >
+		                                                <label class="er_lbl-nombre">
+			                                                <span class="er_text-nomb">Tipo Servicio</span>
+		                                                </label>                                                
+                                                    </div>
+                                                     <div class="md-form col-md-4"  >
+                                                        <h10 for="categoria" style="color:white" class="font-weight-bold"  >Categoria </h10>
+                                                        <select class="combobox form-control" name="service.CategoriaId" id="categoria">
+                                                             
+                                                            <option value="0" id="0"  >Tipo</option>
+                                                             @foreach (var categoria in ViewBag.categoria)
+                                                            {
+                                                                if (categoria.CategoriaId == ViewBag.servicio.CategoriaId)
+                                                                {
+                                                                    <option value="@categoria.CategoriaId" id="@categoria.CategoriaId" selected="selected">@categoria.Nombre</option>
+                                                                }else
+                                                                {
+                                                                    <option value="@categoria.CategoriaId" id="@categoria.Nombre">@categoria.Nombre</option>  
+                                                                }                                                                
+                                                            }                                                            
+                                                        </select>
+                                                    </div>                                           
+                                                </div>
+                                                <hr />                                             
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <button style="background:#fff" type="submit" class=" btn blue-gradient btn-rounded waves-effect waves-light">Guardar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>   
+      </div>
+    </div>
+ </div>
+</body>
+       

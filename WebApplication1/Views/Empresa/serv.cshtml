@@ -22,7 +22,15 @@
                                             <div class="col-md-4">
                                                 <div class="er_card_imgPerfil">
                                                     <row id="preview_imgPerfil">
-                                                        <img id="ImgPerfil1" src="@ViewBag.serv.ImagenS" />
+                                                      @if (ViewBag.serv.ImagenS == null)
+                                                        {
+                                                            <img src="https://previews.123rf.com/images/bitontawan02/bitontawan021606/bitontawan02160600001/58946113-servicios-empresariales-globales-icono-y-s%C3%ADmbolo.jpg" class="img-fluid" alt="Responsive image">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="@ViewBag.serv.ImagenS" class="img-fluid" alt="Responsive image">
+                                                        }
+                                                    
                                                     </row>
                                            
                                                 </div>

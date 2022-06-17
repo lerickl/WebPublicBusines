@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uCy0o2g1niCb/AjHKDvX1a79DphOBzsVbkpJB7ie/vQ=",
+  "Hash": "rPk58gh6NaMdCu5+LgL5vg9VxcWvMsmCBV4v+smk52I=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\erick\\source\\repos\\WebPublicBusines\\WebApplication1\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebApplication1.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\erick\\source\\repos\\WebPublicBusines\\WebApplication1\\wwwroot\\css\\carousel.css",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\erick\\source\\repos\\WebPublicBusines\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "css/carousel.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\carousel.css"
     },
     {
       "Identity": "C:\\Users\\erick\\source\\repos\\WebPublicBusines\\WebApplication1\\wwwroot\\css\\site.css",

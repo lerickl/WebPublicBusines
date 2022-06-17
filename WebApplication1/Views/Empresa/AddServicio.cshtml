@@ -25,26 +25,26 @@
                                                     </row>
                                                     <label for="imgperfilServicio" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDelServicio" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfilServicio"  name="imgperfilServicio" type="file"  />
+                                                    <input id="imgperfilServicio"  name="model.imgperfilServicio" type="file"  />
                                                 </div>
                                             </div> 
                                      
                                             <div class="col-md-8">
                                                 <div class="row">
                                                     <div class="form1 col-md-4  " >
-                                                        <input id="NombreProd"   name="Nombre" type="text"  required>
+                                                        <input id="NombreProd"   name="model.Nombre" type="text"  required>
                                                         <label class="er_lbl-nombre"   >
 			                                                <span class="er_text-nomb">Nombre  </span>
 		                                                </label>  
                                                     </div>
                                                     <div class="form1 col-md-4 ">                                                        
-                                                        <input type="text" name="TipoServicio"  required >
+                                                        <input type="text" name="model.TipoServicio"  required >
 		                                                <label class="er_lbl-nombre" data-error="wrong" data-success="right" >
 			                                                <span class="er_text-nomb">TipoServicio</span>
 		                                                </label> 
                                                     </div>
                                                     <div class="form1 col-md-4">
-                                                        <input type="text" name="Descripcion" required>
+                                                        <input type="text" name="model.Descripcion" required>
 		                                                <label class="er_lbl-nombre">
 			                                                <span class="er_text-nomb">Descripcion</span>
 		                                                </label>
@@ -52,11 +52,22 @@
                                                     </div>
                                             
                                                     <div class="form1 col-md-4 ">                                                      
-                                                        <input type="number" name="Precio"required >
+                                                        <input type="number" name="model.Precio"required >
 		                                                <label class="er_lbl-nombre">
 			                                                <span class="er_text-nomb">Precio</span>
 		                                                </label>
                                                 
+                                                    </div>
+                                                     <div class="md-form col-md-4"  >
+                                                        <h10 for="categoria" style="color:white" class="font-weight-bold"  >Categoria </h10>
+                                                        <select class="combobox form-control" name="model.CategoriaId" id="categoria">
+                                                            <option  selected="selected">Tipo</option>
+                                                             @foreach (var categoria in ViewBag.categoria)
+                                                            {
+                                                                <option value="@categoria.CategoriaId" id="@categoria.Nombre">@categoria.Nombre</option>
+                                                            }
+                                                            
+                                                        </select>
                                                     </div>
                                                
                                            

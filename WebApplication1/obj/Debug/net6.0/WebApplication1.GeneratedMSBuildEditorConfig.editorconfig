@@ -31,6 +31,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/EditP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxFZGl0UC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/EditS.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxFZGl0Uy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -45,6 +53,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxzZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Empresa/serv.cshtml]
@@ -67,8 +79,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Home/product.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwcm9kdWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Home/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Home/search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Home/serv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzZXJ2LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Shared/Error.cshtml]
@@ -113,6 +137,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xzZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/erick/source/repos/WebPublicBusines/WebApplication1/Views/Usuario/serv.cshtml]

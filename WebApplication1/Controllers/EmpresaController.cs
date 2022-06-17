@@ -24,8 +24,6 @@ namespace WebApplication1.Controllers
             this.servicioService= _servicioService;
             this.imagenService= _imagenService;
             this.categoriaService= _categoriaService;
-
-
         }
 
         // GET: EmpresaController
@@ -33,35 +31,61 @@ namespace WebApplication1.Controllers
         {
             ViewBag.productos = productoService.GetAllProducts();
             ViewBag.servicios = servicioService.GetAllServicio();
+            ViewBag.categoria = categoriaService.GetAllCategoria();
             return View();
         }
         [HttpGet]
         public IActionResult Profile() {
-            ViewBag.empresa = authService.GetLogedEmpr();
-
+            try {
+                ViewBag.empresa = authService.GetLogedEmpr();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
         public IActionResult Profile(EmpresaViewModel empresa)
         {
-            var empr = authService.GetLogedEmpr();
-            var empresa1 = new Empresa();
-            empresa1.Email = empresa.Email;
-            empresa1.NombreComercial = empresa.NombreComercial;
-            empresa1.Telefono = empresa.Telefono;
-            empresa1.Ruc = empresa.Ruc;
+            var empr = new Empresa();
+            try {
+                empr = authService.GetLogedEmpr();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+            
+            empr.Email = empresa.Email;
+            empr.NombreComercial = empresa.NombreComercial;
+            empr.Telefono = empresa.Telefono;
+            empr.Ruc = empresa.Ruc;
+            empr.Direccion = empresa.Direccion;
+            if (empresa.isperfil == "true")
+            {
+                empr.ImagenEmpresaIurl = empr.ImagenEmpresaIurl;
+            }
+            else 
+            {
+                if (empresa.imgperfil == null)
+                {
+                    empr.ImagenEmpresaIurl = null;
+                }
+                else
+                {
+                    empr.ImagenEmpresaIurl = imagenService.AddImagenPerfilEmpresa(empresa, empr.EmpresaId);
 
-            empresa1.ImagenEmpresaIurl = imagenService.AddImagenPerfilEmpresa(empresa, empr.EmpresaId);
-
-            ViewBag.empresa = empresa1;
+                }
+            }
+           
+            emprserv.EditarEmpresa(empr.EmpresaId, empr);
+            ViewBag.empresa = empr;
 
             return View();
         }
-        // GET: EmpresaController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
         [HttpGet]
         public ActionResult Create()
         {
@@ -77,8 +101,16 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Productos()
         {
-            var Empresa = authService.GetLogedEmpr();
-            ViewBag.productos = productoService.GetProductoByID(Empresa.EmpresaId);
+            var empresa = new Empresa();
+            try {
+                empresa = authService.GetLogedEmpr();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.productos = productoService.GetProductoByID(empresa.EmpresaId);
             ViewBag.categorias= categoriaService.GetAllCategoria();
 
             return View();
@@ -86,21 +118,37 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Servicios()
         {
-            var Empresa = authService.GetLogedEmpr();
+            var Empresa = new Empresa();
+            try { Empresa = authService.GetLogedEmpr(); }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
             ViewBag.servicios=servicioService.GetAllServicioListById(Empresa.EmpresaId);
             return View();
         }
         [HttpGet]
         public ActionResult AddServicio()
         {
+            ViewBag.categoria = categoriaService.GetAllCategoria();
+
             return View();
 
         }
         [HttpPost]
         public ActionResult AddServicio(ServicioViewModel model )
         {
-            var user = authService.GetLogedEmpr();
-            string urlImgServic = imagenService.AddImagenProd(model.imgperfilServicio);
+            var user =new Empresa();
+            try { user = authService.GetLogedEmpr(); }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+          
+            string urlImgServic;
+            urlImgServic = imagenService.AddImagenServic(model.imgperfilServicio);
+           
             var serv = new Servicio();
             serv.Nombre = model.Nombre;
             serv.EmpresaId = user.EmpresaId;
@@ -108,9 +156,16 @@ namespace WebApplication1.Controllers
             serv.ImagenS = urlImgServic;
             serv.Descripcion = model.Descripcion;
             serv.Precio = model.Precio;
+            if (model.CategoriaId == 0)
+            {
+                serv.CategoriaId = null;
+            }
+            else
+            {
+                serv.CategoriaId = model.CategoriaId;
+            }
             servicioService.AddServicio(serv);
 
-            ViewBag.producto = new ProductoViewModel();
             return RedirectToAction("Servicios", "empresa");
         }
         [HttpGet]
@@ -124,7 +179,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult AddProducto(ProductoViewModel model)
         {
-            var user= authService.GetLogedEmpr();
+            var user = new Empresa();
+            try { user = authService.GetLogedEmpr(); }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             string urlImgProd = imagenService.AddImagenProd(model.imgperfilProducto);
             var prod = new Producto();
             prod.Nombre = model.Nombre;
@@ -133,7 +194,14 @@ namespace WebApplication1.Controllers
             prod.ImagenP = urlImgProd;
             prod.Descripcion= model.Descripcion;    
             prod.Precio = model.Precio;
-            prod.CategoriaId = model.Categoria;
+            if (model.Categoria == 0) {
+                prod.CategoriaId = null;
+            }
+            else
+            {
+                prod.CategoriaId = model.Categoria;
+            }
+          
             productoService.addProduct(prod);
 
            /* ViewBag.producto = new ProductoViewModel()*/;
@@ -146,8 +214,166 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        
+
         // POST: EmpresaController/Create
+        [HttpGet]
+        public IActionResult EditP(int Id)
+        {
+            ViewBag.producto = productoService.GetProductByIdP(Id);
+            ViewBag.categoria = categoriaService.GetAllCategoria();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EditP(ProductoViewModel Prod) 
+        {
+            var produc = new Producto();
+            produc = productoService.GetProductByIdP(Prod.ProductoId);
+            if (produc==null) { return RedirectToAction("productos", "empresa"); }
+            
+           
+            produc.ProductoId = Prod.ProductoId;
+            produc.Nombre = Prod.Nombre;
+            produc.Marca = Prod.Marca;
+            produc.Descripcion = Prod.Descripcion;
+            produc.Precio = Prod.Precio;
+            produc.CategoriaId = Prod.Categoria;            
+         
+            if (Prod.EditImg=="true") 
+            {
+                if (Prod.imgperfilProducto != null)
+                {
+                    produc.ImagenP = imagenService.AddImagenProd(Prod.imgperfilProducto);
+                }
+                else {
+                    produc.ImagenP = null;
+                }
+            }
+            productoService.EditProduct(produc);
+            return RedirectToAction("productos", "empresa");
+        }
+        [HttpGet]
+        public IActionResult RemoveP(int Id)
+        {
+            var empr = new Empresa();
+            try {
+                empr = authService.GetLogedEmpr();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("productos", "empresa");
+            }
+            
+            productoService.DeletProduct(Id, empr.EmpresaId);
+            return RedirectToAction("productos","empresa");
+        }
+        [HttpGet]
+        public IActionResult EditS(int Id)
+        {
+            ViewBag.servicio = servicioService.GetServicioByID(Id);
+            ViewBag.categoria = categoriaService.GetAllCategoria();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EditS(ServicioViewModel service)
+        {
+            var serv = servicioService.GetServicioByID(service.ServicioId);
+            if (serv == null) {
+                return RedirectToAction("servicio","empresa");
+            }
+            serv.ServicioId = service.ServicioId;
+            serv.Nombre = service.Nombre;
+            serv.TipoServicio = service.TipoServicio;
+            serv.Descripcion = service.Descripcion;
+            serv.Precio = service.Precio;
+            serv.CategoriaId = service.CategoriaId;
+
+            if (service.EditImg == "true")
+            {
+                if (service.imgperfilServicio != null)
+                {
+                    serv.ImagenS = imagenService.AddImagenServic(service.imgperfilServicio);
+                }
+                else
+                {
+                    serv.ImagenS = null;
+                }
+            }
+            servicioService.EditarServicio(serv);
+            return RedirectToAction("servicios", "empresa");
+        }
+        [HttpGet]
+        public IActionResult RemoveS(int Id)
+        {
+            var empr = new Empresa(); ;
+            try { empr = authService.GetLogedEmpr(); }
+            catch (Exception e)
+            {
+                return RedirectToAction("servicio", "empresa");
+            }
+         
+            servicioService.DeletServicio(Id, empr.EmpresaId);
+            return RedirectToAction("servicios", "empresa");
+        }
+        [HttpGet]
+        public IActionResult Produc(int id) {
+            ViewBag.Product = productoService.GetProductByIdP(id);
+            ViewBag.Comentarios = null;
+            return View();
+        }
+        [HttpGet]
+        public IActionResult serv(int id)
+        {
+            ViewBag.serv = servicioService.GetServicioByID(id);
+            return View();
+          
+        }
+        [HttpGet]
+        public IActionResult search()
+        {
+            ViewBag.productos = new List<Producto>();
+            ViewBag.categoria = categoriaService.GetAllCategoria();
+            ViewBag.servicios = new List<Servicio>();
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Search(Search search)
+        {
+            var prod = productoService.search(search);
+            var serv = servicioService.search(search);
+            if (prod == null && serv == null)
+            {
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaService.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+
+            }
+            if (prod != null && serv == null)
+            {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaService.GetAllCategoria();
+                ViewBag.servicios = new List<Servicio>();
+            }
+            if (prod == null && serv != null)
+            {
+
+                ViewBag.productos = new List<Producto>();
+                ViewBag.categoria = categoriaService.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+            if (prod != null && serv != null)
+            {
+
+                ViewBag.productos = prod;
+                ViewBag.categoria = categoriaService.GetAllCategoria();
+                ViewBag.servicios = serv;
+            }
+
+            //var result = EmpresaService.Search(busqueda);   
+
+            return View();
+        }
 
     }
 }

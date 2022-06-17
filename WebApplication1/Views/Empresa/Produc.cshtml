@@ -22,7 +22,15 @@
                                             <div class="col-md-4">
                                                 <div class="er_card_imgPerfil">
                                                     <row id="preview_imgPerfil">
-                                                        <img id="ImgPerfil1" src="@ViewBag.Product.ImagenP" />
+                                                        @if (ViewBag.Product.ImagenP == null)
+                                                        {
+                                                            <img src="https://png.pngtree.com/png-clipart/20190517/original/pngtree-commodity-icon-commercial-element-iconclothing-iconclothes-iconclothesiconclothinghatcoatshirtskirtshoesofacoatpantssock-png-image_4080072.jpg" class="img-fluid" alt="Responsive image">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="@ViewBag.Product.ImagenP" class="img-fluid" alt="Responsive image">
+                                                        }
+ 
                                                     </row>                                           
                                                 </div>
                                             </div>                          

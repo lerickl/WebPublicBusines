@@ -190,6 +190,8 @@ namespace WebApplication1.DataDb
                 entity.Property(e => e.ImagenS)
                .HasMaxLength(5000)
                .IsUnicode(false);
+                entity.Property(e => e.CategoriaId)
+                .IsUnicode(false);
             });
 
             modelBuilder.Entity<Usuario>(entity =>

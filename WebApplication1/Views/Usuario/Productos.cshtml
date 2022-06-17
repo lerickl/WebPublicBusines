@@ -2,7 +2,15 @@
  @{ Layout = "~/Views/Shared/_LayoutUsuario.cshtml";}
 <html lang="en">
  
-
+    <style>
+.er_goldcarousel img {
+    max-width: 100%;
+    max-height: 600px;
+    margin: auto;
+    width: 1350px;
+    min-height: 400px;
+}
+</style>
 <body id="page-top"  >
     <div class="er_cont_User">
      <div class="container">
@@ -10,48 +18,86 @@
         <div class="col-lg-12">
                <!-- Begin Page Content -->
                 <div class="container-fluid ">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"> </h1>
                      </div>
+                     <hr />
                     <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">PRODUCTOS</h1>
-                        
+                        <h1 class="h3 mb-0 text-gray-800">Busqueda</h1>                        
                     </div>
-
-                        <!-- Content Row -->
+                
+                <hr/>
+                <h5>Productos:</h5>
+            <hr/>
+            <div class="col-md-12">
+                 <div class="container">
                         <div class="row">
-                                @foreach(var products in ViewBag.productos)
+                            <div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel" data-interval="1000">
+                                <div class="MultiCarousel-inner">
+                                @if (ViewBag.productos!=null)
                                 {
-                                     <div class="col-lg-4 mb-4">
-                                                <!-- Illustrations -->
-                                                <div class="card shadow mb-4">
-                                                    <div class="card-header py-3">
-                                                        <h6 class="m-0 font-weight-bold text-primary">@products.Nombre</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="text-center">
-                                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 300px;height:300px"
-                                                                src="@products.ImagenP" alt="...">
+                                    @foreach (var prod in ViewBag.productos)
+                                        {
+                                        <div class="item" style="opacity:0.95;  ">
+                                            <div class="pad15 er_cont_carrousel">
+                                                <div class="  " style="border-radius: 10px; ">
+                                                    @if (@prod.ImagenP==null)
+                                                    {
+                                                        <img class="img-fluid" src="https://png.pngtree.com/png-clipart/20190517/original/pngtree-commodity-icon-commercial-element-iconclothing-iconclothes-iconclothesiconclothinghatcoatshirtskirtshoesofacoatpantssock-png-image_4080072.jpg" style="" loading="lazy" />
+                                                    }else
+                                                    {
+                                                        <img class="img-fluid" src="@prod.ImagenP" style="" loading="lazy" />                                                        
+                                                    }
+                                                    @if (@prod.CategoriaId == null)
+                                                    {
+                                                        <p style="color:white; background-color:rgba(0,0,0,0.8); top:-200px;position:relative;    border-radius: 5px;">
+                                                        <i class="fa-solid fa-arrows-spin"></i>
+                                                         Otros</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p style="color:white; background-color:rgba(0,0,0,0.8); top:-200px;position:relative;    border-radius: 5px;">
+                                                        @foreach (var cat in ViewBag.categoria)
+                                                        {
+                                                            if (prod.CategoriaId == cat.CategoriaId)
+                                                            {
+                                                                <i class="fa-solid fa-arrows-spin"></i> @cat.Nombre 
+                                                            }
+                                                        }
+
+                                                        </p>            
+                                                    }
+
+
+                                                    
                                                         </div>
-                                                        <p>Reparación de equipos tecnológicos</p>
-                                                        <a target="_blank" rel="nofollow" href="/Usuario/Produc?id=@products.ProductoId">Ver mas &rarr;</a>
-                                                    </div>
+                                                        <div>
+                                                            <h6 class="card-text"> @prod.Nombre </h6>                                                        
+                                            
+                                                            @if (prod.Precio != null)
+                                                            {
+                                                                <h6 class="card-text">
+                                                                    <i class="far fa-money-bill-alt"></i> : S/.@prod.Precio
+                                                                </h6>
+                                                            }                                                             
+                                                      <hr/>
+                                                            <a href="/usuario/produc?Id=@prod.ProductoId" class="er_button" > Ver </a>
+                                                         <hr/>
+                                                        </div>
                                                 </div>
-                                                
-                                            </div>
-
+                                            </div>                                       
+                                        }                                 
                                 }
-                               
-                                       
-                          </div>                    
-                </div>
-
-        </div>
+                                </div>
+                                <button class="leftLst" style="background-color:transparent;color:black; opacity:0.5; font-weight: bold;font-size:60px;  "><</button>
+                                <button class="rightLst" style="background-color:transparent;color:black; opacity:0.5;font-weight: bold;font-size:60px; ">></button>
+                            </div>
+                        </div>
+                 </div>
+            </div>
       </div>
     </div>
     </div>

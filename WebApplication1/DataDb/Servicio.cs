@@ -12,5 +12,6 @@ namespace WebApplication1.DataDb
         public string? TipoServicio { get; set; }
         public string? Descripcion { get; set; }
         public string? ImagenS { get; set; }
+        public int? CategoriaId { get; set; }
     }
 }

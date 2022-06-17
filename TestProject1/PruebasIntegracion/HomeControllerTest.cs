@@ -12,7 +12,7 @@ using WebApplication1.Controllers;
 using WebApplication1.DataDb;
 using WebApplication1.Servicios.Interfaces;
 
-namespace TestProject1.UnitTest
+namespace TestProject1.PruebasIntegracion
 {
     [TestFixture]
     internal class HomeControllerTest
@@ -21,49 +21,45 @@ namespace TestProject1.UnitTest
         public void GetIndexIsOk()
         {
 
-    
-
             var IUsuarioServiceMock = new Mock<IUsuarioService>();
             var IEmpresaServiceMock = new Mock<IEmpresaService>();
             var ISessionServiceMock = new Mock<ISessionService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var IHttpContextAccessor = new Mock<IHttpContextAccessor>();
-            var ICategoriaServiceMock = new Mock<ICategoriaEmpresa>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
             var IValidacionesServiceMock = new Mock<IValidacionesService>();
+            var IProductServiceMock = new Mock<IProductoService>();
+            var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object, ICategoriaServiceMock.Object, IValidacionesServiceMock.Object);
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
+                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+                IServicioServiceMock.Object, ICategoriaServiceMock.Object);
 
-            //var inmuebles = IInmuebleServiceMock.Setup(x=>x.GetInmubles()).Returns(new List<Inmueble>());
-            var inmuebles = new List<Usuario>();
-            //var Imagenes = new List<Imagen>();
-            //var tipoinmueble = new List<InmuebleTipo>();
-            //var ciudad = new List<Ciudades>();
-            var result = home.Index() as ViewResult;
-            Assert.IsInstanceOf<ViewResult>(result);
 
-            //Assert.IsNull(result.ViewBag.UserLogged);
-            //Assert.AreEqual(result.ViewBag.Inmuebles, inmuebles);
-            //Assert.AreEqual(result.ViewBag.Imagenes, Imagenes);
-            //Assert.AreEqual(result.ViewBag.TipoInmueble, tipoinmueble);
-            //Assert.AreEqual(result.ViewBag.ciudad, ciudad);
+            Assert.IsNull(home.ViewBag.UserLogged);
+
 
         }
         [Test]
         public void GetRegisterIsOk()
-        { 
+        {
             var IUsuarioServiceMock = new Mock<IUsuarioService>();
             var IEmpresaServiceMock = new Mock<IEmpresaService>();
             var ISessionServiceMock = new Mock<ISessionService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var IHttpContextAccessor = new Mock<IHttpContextAccessor>();
-            var ICategoriaServiceMock = new Mock<ICategoriaEmpresa>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
             var IValidacionesServiceMock = new Mock<IValidacionesService>();
+            var IProductServiceMock = new Mock<IProductoService>();
+            var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object, ICategoriaServiceMock.Object, IValidacionesServiceMock.Object);
-            var inmuebles = new List<Usuario>();         
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
+                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+                IServicioServiceMock.Object, ICategoriaServiceMock.Object);
+            var inmuebles = new List<Usuario>();
             var result = home.Register() as ViewResult;
             Assert.IsInstanceOf<ViewResult>(result);
- 
+
         }
         [Test]
         public void GetLoginIsOk()
@@ -73,10 +69,14 @@ namespace TestProject1.UnitTest
             var ISessionServiceMock = new Mock<ISessionService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var IHttpContextAccessor = new Mock<IHttpContextAccessor>();
-            var ICategoriaServiceMock = new Mock<ICategoriaEmpresa>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
             var IValidacionesServiceMock = new Mock<IValidacionesService>();
+            var IProductServiceMock = new Mock<IProductoService>();
+            var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object, ICategoriaServiceMock.Object, IValidacionesServiceMock.Object);
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
+                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+                IServicioServiceMock.Object, ICategoriaServiceMock.Object);
             var inmuebles = new List<Usuario>();
             var result = home.Login() as ViewResult;
             Assert.IsInstanceOf<ViewResult>(result);
@@ -90,10 +90,14 @@ namespace TestProject1.UnitTest
             var ISessionServiceMock = new Mock<ISessionService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var IHttpContextAccessor = new Mock<IHttpContextAccessor>();
-            var ICategoriaServiceMock = new Mock<ICategoriaEmpresa>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
             var IValidacionesServiceMock = new Mock<IValidacionesService>();
+            var IProductServiceMock = new Mock<IProductoService>();
+            var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object, ICategoriaServiceMock.Object, IValidacionesServiceMock.Object);
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
+                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+                IServicioServiceMock.Object, ICategoriaServiceMock.Object); 
             var inmuebles = new List<Usuario>();
             var result = home.Privacy() as ViewResult;
             Assert.IsInstanceOf<ViewResult>(result);

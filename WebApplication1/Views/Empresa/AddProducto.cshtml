@@ -25,26 +25,26 @@
                                                     </row>
                                                     <label for="imgperfilProducto" class="er_scroll_botAdd"><i class="fas fa-angle-double-up"></i></label>
                                                     <label for="" id="imgperfilDelProducto" class="er_scroll_botDel"><i class="far fa-trash-alt"></i></label>
-                                                    <input id="imgperfilProducto"  name="imgperfilProducto" type="file"  />
+                                                    <input id="imgperfilProducto"  name="model.imgperfilProducto" type="file"  />
                                                 </div>
                                             </div> 
                                      
                                             <div class="col-md-8">
                                                 <div class="row">
                                                     <div class="form1 col-md-4  " >
-                                                        <input id="NombreProd"   name="Nombre" type="text"  required>
+                                                        <input id="NombreProd"   name="model.Nombre" type="text"  required>
                                                         <label class="er_lbl-nombre"   for="Nombre">
 			                                                <span class="er_text-nomb">Nombre</span>
 		                                                </label>  
                                                     </div>
                                                     <div class="form1 col-md-4 ">                                                        
-                                                        <input type="text" name="Marca"  required >
+                                                        <input type="text" name="model.Marca"  required >
 		                                                <label class="er_lbl-nombre" data-error="wrong" data-success="right" >
 			                                                <span class="er_text-nomb">Marca</span>
 		                                                </label> 
                                                     </div>
                                                     <div class="form1 col-md-4">
-                                                        <input type="text" name="Descripcion" required>
+                                                        <input type="text" name="model.Descripcion" required>
 		                                                <label class="er_lbl-nombre">
 			                                                <span class="er_text-nomb">Descripcion</span>
 		                                                </label>
@@ -52,7 +52,7 @@
                                                     </div>
                                             
                                                     <div class="form1 col-md-4 ">                                                      
-                                                        <input type="number" name="Precio"required >
+                                                        <input type="number" name="model.Precio"required >
 		                                                <label class="er_lbl-nombre">
 			                                                <span class="er_text-nomb">Precio</span>
 		                                                </label>
@@ -60,8 +60,8 @@
                                                     </div>
                                                      <div class="md-form col-md-4"  >
                                                         <h10 for="categoria" style="color:white" class="font-weight-bold"  >Categoria </h10>
-                                                        <select class="combobox form-control" name="categoria" id="categoria">
-                                                            <option value="0" id="0" selected="selected">Tipo</option>
+                                                        <select class="combobox form-control" name="model.Categoria" id="categoria">
+                                                            <option   selected="selected">Tipo</option>
                                                              @foreach (var categoria in ViewBag.categoria)
                                                             {
                                                                 <option value="@categoria.CategoriaId" id="@categoria.Nombre">@categoria.Nombre</option>

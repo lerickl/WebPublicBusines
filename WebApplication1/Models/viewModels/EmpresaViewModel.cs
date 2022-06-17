@@ -11,5 +11,6 @@
         public string? Email { get; set; }
         public string? Password { get; set; }
         public int? CategoriaId { get; set; }
+        public string? isperfil { get; set; }
     }
 }
