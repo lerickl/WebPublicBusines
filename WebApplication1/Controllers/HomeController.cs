@@ -183,16 +183,35 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult serv(int id) 
         {
-            ViewBag.serv = ServicioServ.GetServicioByID(id);
+            var serv= ServicioServ.GetServicioByID(id);
+            ViewBag.serv = serv;
+            ViewBag.empresa = EmpresaService.GetEmpresaByID(serv.EmpresaId).NombreComercial;
             return View();
             
         }
         [HttpGet]
         public IActionResult product(int id)
         {
-            ViewBag.Product = productServ.GetProductByIdP(id);
+            var prod = productServ.GetProductByIdP(id);
+            ViewBag.Product = prod;
+            ViewBag.empresa = EmpresaService.GetEmpresaByID(prod.EmpresaId).NombreComercial;
             return View();
 
+        }
+
+        [HttpGet]
+        public IActionResult E(int id) 
+        {
+            EmpresaVM datos = new EmpresaVM();
+            var tmp= EmpresaService.GetEmpresaByID(id);
+            datos.NombreComercial = tmp.NombreComercial;
+            datos.Telefono = tmp.Telefono;
+            datos.Email = tmp.Email;
+            datos.Direccion = tmp.Direccion;
+            datos.Ruc = tmp.Ruc;
+            datos.ImagenEmpresaIurl = tmp.ImagenEmpresaIurl;
+            ViewBag.Empresa= datos;
+            return View();
         }
 
 

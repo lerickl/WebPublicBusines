@@ -54,46 +54,13 @@ namespace TestProject1.PruebasUnitarias
                 IProductoService, IServicioService, UsuarioService, ICategoriaService);
             var index = usuarioControllerTest.Index() as ViewResult;
             Assert.IsNotNull(index.ViewData["productos"]);
-
-        }
-        [Test]
-        public void EsValidoGetIndexViewBagservicios()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var index = usuarioControllerTest.Index() as ViewResult;
             Assert.IsNotNull(index.ViewData["servicios"]);
-
-        }
-        [Test]
-        public void EsValidoGetIndexViewBagcategoria()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var index = usuarioControllerTest.Index() as ViewResult;
             Assert.IsNotNull(index.ViewData["categoria"]);
 
+
         }
+       
+  
         [Test]
         public void EsValidoGetdashboard()
         {
@@ -150,66 +117,14 @@ namespace TestProject1.PruebasUnitarias
                 IProductoService, IServicioService, UsuarioService, ICategoriaService);
             var Productos = usuarioControllerTest.Productos() as ViewResult;
             Assert.IsNotNull(Productos.ViewData["productos"]);
-
-
-        }
-        [Test]
-        public void EsValidoGetProductosViewBagcategoria()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService,
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var Productos = usuarioControllerTest.Productos() as ViewResult;
             Assert.IsNotNull(Productos.ViewData["categoria"]);
-
-        }
-        [Test]
-        public void EsValidoGetProductosViewBagservicios()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService,
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var Productos = usuarioControllerTest.Productos() as ViewResult;
             Assert.IsNotNull(Productos.ViewData["servicios"]);
 
-        }
-        [Test]
-        public void EsValidoPostProductos()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService,
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var Productos = usuarioControllerTest.Productos(new UsuarioViewModel()) ;
-            Assert.IsInstanceOf<ViewResult>(Productos);
 
         }
+        
+   
+        
         [Test]
         public void EsValidoGetServicios()
         {
@@ -230,7 +145,7 @@ namespace TestProject1.PruebasUnitarias
 
         }
         [Test]
-        public void EsValidoGetServiciosViewBagcategoria()
+        public void EsValidoGetServiciosViewBagcategoriaservicios()
         {
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
@@ -246,27 +161,10 @@ namespace TestProject1.PruebasUnitarias
                 IProductoService, IServicioService, UsuarioService, ICategoriaService);
             var Servicios = usuarioControllerTest.Servicios() as ViewResult;
             Assert.IsNotNull(Servicios.ViewData["categoria"]);
-
-        }
-        [Test]
-        public void EsValidoGetServiciosViewBagservicios()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService,
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var Servicios = usuarioControllerTest.Servicios() as ViewResult;
             Assert.IsNotNull(Servicios.ViewData["servicios"]);
 
         }
+
         [Test]
         public void EsValidoGetProfile()
         {
@@ -287,7 +185,7 @@ namespace TestProject1.PruebasUnitarias
 
         }
         [Test]
-        public void EsValidoGetProfileUserNull()
+        public void EsValidoGetProfileUser()
         {
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
@@ -338,7 +236,8 @@ namespace TestProject1.PruebasUnitarias
             var ICloudinaryService = new CloudinaryService();
             var IImagenService = new ImagenService(WebContext, ICloudinaryService);
             var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);  var test = usuarioControllerTest.test();            
+                IProductoService, IServicioService, UsuarioService, ICategoriaService);  
+            var test = usuarioControllerTest.test();            
             Assert.IsInstanceOf<ViewResult>(test);
         }
         [Test]
@@ -418,25 +317,7 @@ namespace TestProject1.PruebasUnitarias
 
             Assert.IsInstanceOf<ViewResult>(Create);
         }
-        [Test]
-        public void EsValidoGetAddProducto()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService,                 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var AddProducto = usuarioControllerTest.AddProducto();
 
-            Assert.IsInstanceOf<ViewResult>(AddProducto);
-        }
         [Test]
         public void EsValidoGetProduc()
         {
@@ -528,45 +409,11 @@ namespace TestProject1.PruebasUnitarias
                 IProductoService, IServicioService, UsuarioService, ICategoriaService);
             var search = usuarioControllerTest.search() as ViewResult;
 
-            Assert.IsNotNull(search.ViewData["productos"]); 
-        }
-        [Test]
-        public void EsValidoGetSearchViewBagcategoria()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var search = usuarioControllerTest.search() as ViewResult;
-             
+            Assert.IsNotNull(search.ViewData["productos"]);
             Assert.IsNotNull(search.ViewData["categoria"]);
-        }
-        [Test]
-        public void EsValidoGetSearchViewBagservicios()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var search = usuarioControllerTest.search() as ViewResult;
             Assert.IsNotNull(search.ViewData["servicios"]);
         }
+       
         [Test]
         public void EsValidoPostSearch()
         {
@@ -587,7 +434,7 @@ namespace TestProject1.PruebasUnitarias
             Assert.IsInstanceOf<ViewResult>(search);
         }
         [Test]
-        public void EsValidoPostSearchViewBagproductos()
+        public void EsValidoPostSearchViewBags()
         {
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
@@ -603,42 +450,9 @@ namespace TestProject1.PruebasUnitarias
                 IProductoService, IServicioService, UsuarioService, ICategoriaService);
             var search = usuarioControllerTest.Search(new Search()) as ViewResult;
             Assert.IsNotNull(search.ViewData["productos"]);
-        }
-        [Test]
-        public void EsValidoPostSearchViewBagcategoria()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var search = usuarioControllerTest.Search(new Search()) as ViewResult;
             Assert.IsNotNull(search.ViewData["categoria"]);
-        }
-        [Test]
-        public void EsValidoPostSearchViewBagservicios()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);            
-            var usuarioControllerTest = new UsuarioController(IAuthService, ISessionService, IImagenService, 
-                IProductoService, IServicioService, UsuarioService, ICategoriaService);
-            var search = usuarioControllerTest.Search(new Search()) as ViewResult;
             Assert.IsNotNull(search.ViewData["servicios"]);
         }
+        
     }
 }

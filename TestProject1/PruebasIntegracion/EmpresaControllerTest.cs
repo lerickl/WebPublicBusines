@@ -17,26 +17,18 @@ namespace TestProject1.PruebasIntegracion
     internal class EmpresaControllerTest
     {
         [Test]
-        public void GetiNDEXIsOk()
+        public void GetindexIsOk()
         {
-            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
-            var IAuthServiceMock = new Mock<IAuthService>();
-            var ISessionServiceMock = new Mock<ISessionService>();
-            var IProductoServiceMock = new Mock<IProductoService>();
-            var IServiceServiceMock = new Mock<IServicioService>();
-            var IImagenServiceMock = new Mock<IImagenService>();
-            var ICategoriaServiceMock= new Mock<ICategoriaService>();           
-            var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
-                ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object, 
-                IImagenServiceMock.Object, ICategoriaServiceMock.Object);
-            var inmuebles = new List<Usuario>();
-            var result = empresa.Index() as ViewResult;
-            Assert.IsInstanceOf<ViewResult>(result);
 
-        }
-        [Test]
-        public void GetProfileIsOk()
-        {
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
             var IIEmpresaServiceMock = new Mock<IEmpresaService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var ISessionServiceMock = new Mock<ISessionService>();
@@ -44,17 +36,102 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(Empr);
+            IProductoServiceMock.Setup(e => e.GetAllProducts()).Returns(new List<Producto>());
+            IServiceServiceMock.Setup(e => e.GetAllServicio()).Returns(new List<Servicio>());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
                 ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object,
                 IImagenServiceMock.Object, ICategoriaServiceMock.Object);
-            var inmuebles = new List<Usuario>();
-            var result = empresa.Profile() as ViewResult;
+
+            var result = empresa.Index() as ViewResult;
+            var productos = result.ViewData["productos"];
+            var servicios = result.ViewData["servicios"];
+            var categoria = result.ViewData["categoria"];
+            Assert.AreEqual(productos, new List<Producto>());
+            Assert.AreEqual(servicios, new List<Servicio>());
+            Assert.AreEqual(categoria, new List<Categoria>());
+
+
+
+        }
+        [Test]
+        public void GetProfileIsOk()
+        {
+         
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock= new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(Empr);
+
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
+                ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object, 
+                IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+         
+            var result = empresa.Profile() as ViewResult ;
+            var temp = result.ViewData["empresa"];
+            Assert.AreEqual(temp, Empr);
+         
+
+        }
+        [Test]
+        public void GetProfileviewIsOk()
+        {
+           
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
+
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(Empr);
+
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
+                ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object,
+                IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+     
+            var result = empresa.Profile();
             Assert.IsInstanceOf<ViewResult>(result);
 
         }
         [Test]
         public void PostProfileIsOk()
         {
+
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
             var IIEmpresaServiceMock = new Mock<IEmpresaService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var ISessionServiceMock = new Mock<ISessionService>();
@@ -72,7 +149,7 @@ namespace TestProject1.PruebasIntegracion
            
                 
             };
-            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(new Empresa());
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(Empr);
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object, 
                 ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object, IImagenServiceMock.Object,
                 ICategoriaServiceMock.Object);
@@ -84,6 +161,18 @@ namespace TestProject1.PruebasIntegracion
         [Test]
         public void GetCreateIsOk()
         {
+            
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
+
+
             var IIEmpresaServiceMock = new Mock<IEmpresaService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var ISessionServiceMock = new Mock<ISessionService>();
@@ -91,19 +180,8 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(Empr);
 
-            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(new Empresa());
-            Empresa Empr = new Empresa() 
-            {
-                NombreComercial = "Test",
-                Email = "test@test.com",
-                Contraseña = "123123",
-                Direccion = "test",
-                Telefono = "123123123",
-            
-            };
-         
-            
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
                 ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object, 
                 IImagenServiceMock.Object, ICategoriaServiceMock.Object);
@@ -116,7 +194,34 @@ namespace TestProject1.PruebasIntegracion
         [Test]
         public void PostCreateIsOk() 
         {
-        
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+          
+            Empresa Empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
+
+            IIEmpresaServiceMock.Setup(e => e.addEmpresa(Empr));
+            
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
+                ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object,
+                IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+
+            var result = empresa.Create(Empr);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
         }
         [Test]
         public void GetProductosIsOk()
@@ -128,7 +233,15 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
-            var empr = new Empresa();
+            var empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
             empr.EmpresaId = 1;
             IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
             IProductoServiceMock.Setup(e => e.GetProductoByID(empr.EmpresaId)).Returns(new List<Producto>());
@@ -136,11 +249,12 @@ namespace TestProject1.PruebasIntegracion
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
                 IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object, 
                 IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
-            var inmuebles = new List<Usuario>();
-            var result = empresa.Productos() as ViewResult;
+          
+            var result = empresa.Productos() ;
             Assert.IsInstanceOf<ViewResult>(result);
 
         }
+       
         [Test]
         public void GetServiciosIsOk()
         {
@@ -151,7 +265,15 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
-            var empr = new Empresa();
+            var empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
             empr.EmpresaId = 1;
             IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
             IServiceServiceMock.Setup(e => e.GetAllServicioListById(empr.EmpresaId)).Returns(new List<Servicio>());
@@ -166,7 +288,15 @@ namespace TestProject1.PruebasIntegracion
         [Test]
         public void GetAddServicioIsOk()
         {
+            var empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
 
+            };
 
             var IIEmpresaServiceMock = new Mock<IEmpresaService>();
             var IAuthServiceMock = new Mock<IAuthService>();
@@ -175,17 +305,61 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
                 ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object,
                 IImagenServiceMock.Object, ICategoriaServiceMock.Object);
             var inmuebles = new List<Usuario>();
-            var result = empresa.AddServicio() as ViewResult;
+            var result = empresa.AddServicio();
             Assert.IsInstanceOf<ViewResult>(result);
+
+        }
+        [Test]
+        public void PostAddServicioIsOk()
+        {
+            var empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object, IAuthServiceMock.Object,
+                ISessionServiceMock.Object, IProductoServiceMock.Object, IServiceServiceMock.Object,
+                IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var addServic = new ServicioViewModel() {
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",             
+                CategoriaId = 1,
+                TipoServicio = "Test"
+            };
+            var result = empresa.AddServicio(addServic);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
 
         }
         [Test]
         public void GetAddProductoIsOk()
         {
+            var empr = new Empresa()
+            {
+                NombreComercial = "Test",
+                Email = "test@test.com",
+                Contraseña = "123123",
+                Direccion = "test",
+                Telefono = "123123123",
+
+            };
             var IIEmpresaServiceMock = new Mock<IEmpresaService>();
             var IAuthServiceMock = new Mock<IAuthService>();
             var ISessionServiceMock = new Mock<ISessionService>();
@@ -193,11 +367,12 @@ namespace TestProject1.PruebasIntegracion
             var IServiceServiceMock = new Mock<IServicioService>();
             var IImagenServiceMock = new Mock<IImagenService>();
             var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
             var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
                 IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object, 
                 IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
             var inmuebles = new List<Usuario>();
-            var result = empresa.AddProducto() as ViewResult;
+            var result = empresa.AddProducto();
             Assert.IsInstanceOf<ViewResult>(result);
 
         }
@@ -219,6 +394,280 @@ namespace TestProject1.PruebasIntegracion
             Assert.IsInstanceOf<ViewResult>(result);
 
         }
-         
+        [Test]
+        public void GetEditPIsOk()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IServiceServiceMock.Setup(e=>e.GetServicioByID(1)).Returns(new Servicio());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var inmuebles = new List<Usuario>();
+            var result = empresa.EditP(1) as ViewResult;
+            Assert.IsInstanceOf<ViewResult>(result);
+
+        }
+        [Test]
+        public void PostEditPIsOk()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IProductoServiceMock.Setup(e => e.GetProductByIdP(1)).Returns(new Producto());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var Produc = new ProductoViewModel() {
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                Categoria = 1,
+                imgperfilProducto = null,
+                EditImg="false"
+                
+            };
+            var result = empresa.EditP(Produc);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void PostEditPIsOkConImg()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IProductoServiceMock.Setup(e => e.GetProductByIdP(1)).Returns(new Producto());
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var Produc = new ProductoViewModel()
+            {
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                Categoria = 1,
+                imgperfilProducto = null,
+                EditImg = "true"
+
+            };
+            var result = empresa.EditP(Produc);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void PostEditPIsOkProductNull()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IProductoServiceMock.Setup(e => e.GetProductByIdP(1)).Returns(new Producto());
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var Produc = new ProductoViewModel();
+          
+            var result = empresa.EditP(Produc);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void GetRemoveProduct() {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            var empr = new Empresa() {
+                EmpresaId = 1,
+                NombreComercial = "Test",
+                Direccion = "Test",
+                Telefono = "Test",
+                Email = ""
+            };
+            var prod = new Producto() {
+                ProductoId = 1,
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                EmpresaId = 1,
+                CategoriaId = 1
+            };
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
+            IProductoServiceMock.Setup(e => e.GetProductByIdP(1)).Returns(new Producto());
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var Produc = new ProductoViewModel();
+
+            var result = empresa.RemoveP(1);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+        }
+        [Test]
+        public void GetEditSIsOk()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+
+            IProductoServiceMock.Setup(e => e.GetProductByIdP(1)).Returns(new Producto());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());            
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+            var inmuebles = new List<Usuario>();
+            var result = empresa.EditS(1) as ViewResult;
+            Assert.IsInstanceOf<ViewResult>(result);
+
+        }
+        [Test]
+        public void PostEditSIsOk()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IServiceServiceMock.Setup(e => e.GetServicioByID(1)).Returns(new Servicio());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
+            var servic = new ServicioViewModel() {
+                ServicioId = 1,
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                CategoriaId = 1,
+                imgperfilServicio = null,
+                EditImg = "false"
+            };
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+
+            var result = empresa.EditS(servic);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void PostEditSIsOkConImagen()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IServiceServiceMock.Setup(e => e.GetServicioByID(1)).Returns(new Servicio());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
+            var servic = new ServicioViewModel()
+            {
+                ServicioId = 1,
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                CategoriaId = 1,
+                imgperfilServicio = null,
+                EditImg = "true"
+            };
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+
+            var result = empresa.EditS(servic);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void PostEditServicenull()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            IServiceServiceMock.Setup(e => e.GetServicioByID(1)).Returns(new Servicio());
+            ICategoriaServiceMock.Setup(e => e.GetAllCategoria()).Returns(new List<Categoria>());
+            var servic = new ServicioViewModel() ;
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+
+            var result = empresa.EditS(servic);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+        [Test]
+        public void GetRemoveService()
+        {
+            var IIEmpresaServiceMock = new Mock<IEmpresaService>();
+            var IAuthServiceMock = new Mock<IAuthService>();
+            var ISessionServiceMock = new Mock<ISessionService>();
+            var IProductoServiceMock = new Mock<IProductoService>();
+            var IServiceServiceMock = new Mock<IServicioService>();
+            var IImagenServiceMock = new Mock<IImagenService>();
+            var ICategoriaServiceMock = new Mock<ICategoriaService>();
+            var empr = new Empresa()
+            {
+                EmpresaId = 1,
+                NombreComercial = "Test",
+                Direccion = "Test",
+                Telefono = "Test",
+                Email = "Test@upn.pe"
+            };
+            var serv = new Servicio() 
+            {
+                ServicioId = 1,
+                Nombre = "Test",
+                Descripcion = "Test",
+                Precio = "1",
+                CategoriaId = 1,
+                EmpresaId = 1
+            };      
+            IAuthServiceMock.Setup(e => e.GetLogedEmpr()).Returns(empr);
+            IServiceServiceMock.Setup(e => e.GetServicioByID(1)).Returns(serv);
+            
+            var servic = new ServicioViewModel();
+            var empresa = new EmpresaController(IIEmpresaServiceMock.Object,
+                IAuthServiceMock.Object, ISessionServiceMock.Object, IProductoServiceMock.Object,
+                IServiceServiceMock.Object, IImagenServiceMock.Object, ICategoriaServiceMock.Object);
+
+            var result = empresa.RemoveS(1);
+            Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        }
+
     }
 }

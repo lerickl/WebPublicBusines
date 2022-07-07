@@ -113,6 +113,15 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void IsValidPostProfileEmpresa()
         {
+            var emp = new EmpresaViewModel();
+            emp.NombreComercial = "Empresa test";
+            emp.Email = "Empresa@test.com";
+            emp.CategoriaId = 1;
+            emp.Telefono = "123123123";
+            emp.Ruc = "123123123";
+            emp.Direccion = "direccion test";
+            emp.isperfil = "false";          
+
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -126,7 +135,7 @@ namespace TestProject1.PruebasUnitarias
             var IEmpresaService = new EmpresaService(WebContext);
             var empresaControllerTest = new EmpresaController(IEmpresaService, IAuthService,
                 ISessionService, IProductoService, IServicioService, IImagenService, ICategoriaService);
-            var Profile = empresaControllerTest.Profile(new EmpresaViewModel());
+            var Profile = empresaControllerTest.Profile(emp);
             Assert.IsInstanceOf<RedirectToActionResult>(Profile);
         }
         [Test]
@@ -208,6 +217,12 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void IsValidPostAddServicios()
         {
+            var serv = new ServicioViewModel();
+            serv.Nombre = "test";
+            serv.TipoServicio = "tipo serv";
+            serv.Precio = "10";
+            serv.Descripcion = "descripcion test";
+            serv.imgperfilServicio = null;
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -221,7 +236,7 @@ namespace TestProject1.PruebasUnitarias
             var IEmpresaService = new EmpresaService(WebContext);
             var empresaControllerTest = new EmpresaController(IEmpresaService, IAuthService, 
                 ISessionService, IProductoService, IServicioService, IImagenService, ICategoriaService);
-            var AddServicio = empresaControllerTest.AddServicio(new ServicioViewModel());
+            var AddServicio = empresaControllerTest.AddServicio(serv);
             Assert.IsInstanceOf<RedirectToActionResult>(AddServicio);
 
         }
@@ -267,6 +282,13 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void IsValidPostAddProducto()
         {
+            var prod = new ProductoViewModel();
+            prod.Nombre = "";
+            prod.Categoria = 1;
+            prod.Descripcion = "descripcion producto";
+            prod.Precio = "123";
+            prod.Marca = "test marca";
+            prod.imgperfilProducto = null;
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -280,7 +302,7 @@ namespace TestProject1.PruebasUnitarias
             var IEmpresaService = new EmpresaService(WebContext);
             var empresaControllerTest = new EmpresaController(IEmpresaService, IAuthService,
                 ISessionService, IProductoService, IServicioService, IImagenService, ICategoriaService);
-            var AddProducto = empresaControllerTest.AddProducto(new ProductoViewModel());
+            var AddProducto = empresaControllerTest.AddProducto(prod);
             Assert.IsInstanceOf<RedirectToActionResult>(AddProducto);
         }
         [Test]
@@ -321,27 +343,7 @@ namespace TestProject1.PruebasUnitarias
             var EditP = empresaControllerTest.EditP(1);            
             Assert.IsInstanceOf<ViewResult>(EditP);
         }
-        [Test]
-        public void IsValidPostEditP()
-        {
-            var WebContext = new WebeOContext();
-            var httpContext = new HttpContextAccessor();
-            var UsuarioService = new UsuarioService(WebContext);
-            var ISessionService = new SessionService();
-            var IAuthService = new AuthService(WebContext, ISessionService, httpContext);
-            var IProductoService = new ProductoService(WebContext);
-            var IServicioService = new ServicioService(WebContext);
-            var ICategoriaService = new CategoriaService(WebContext);
-            var ICloudinaryService = new CloudinaryService();
-            var IImagenService = new ImagenService(WebContext, ICloudinaryService);
-            var IEmpresaService = new EmpresaService(WebContext);
-            var produc = new ProductoViewModel();          
-            var empresaControllerTest = new EmpresaController(IEmpresaService, IAuthService,
-                ISessionService, IProductoService, IServicioService, IImagenService, ICategoriaService);
-            var EditP = empresaControllerTest.RemoveP(2);
-            Assert.IsInstanceOf<RedirectToActionResult>(EditP);
-
-        }
+        
         [Test]
         public void IsValidPostRemoveP()
         {
@@ -527,6 +529,8 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void IsValidPostsearch()
         {
+            var busqueda = new Search();
+            busqueda.busqueda = "telefonos";
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -541,7 +545,7 @@ namespace TestProject1.PruebasUnitarias
             var produc = new ProductoViewModel();
             var empresaControllerTest = new EmpresaController(IEmpresaService, IAuthService, 
                 ISessionService, IProductoService, IServicioService, IImagenService, ICategoriaService);
-            var search = empresaControllerTest.Search(new Search());
+            var search = empresaControllerTest.Search(busqueda);
             Assert.IsInstanceOf<ViewResult>(search);
         }
     }

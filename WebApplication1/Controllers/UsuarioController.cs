@@ -16,8 +16,9 @@ namespace WebApplication1.Controllers
         private readonly IServicioService servicioService;
         private readonly IUsuarioService usuarioService;
         private readonly ICategoriaService categoriaserv;
+        private readonly IEmpresaService empresaserv;
 
-        public UsuarioController(IAuthService _auth, ISessionService _sessionService, IImagenService _imagenService, IProductoService _productoService, IServicioService _servicioService, IUsuarioService _usuarioService, ICategoriaService _categoriaserv) { 
+        public UsuarioController(IAuthService _auth, ISessionService _sessionService, IImagenService _imagenService, IProductoService _productoService, IServicioService _servicioService, IUsuarioService _usuarioService, ICategoriaService _categoriaserv, IEmpresaService _empresaserv) { 
             this.auth = _auth;
             this.sessionService = _sessionService;
             this.imagenService = _imagenService;
@@ -25,6 +26,7 @@ namespace WebApplication1.Controllers
             this.servicioService = _servicioService;
             this.usuarioService = _usuarioService;
             this.categoriaserv = _categoriaserv;
+            this.empresaserv = _empresaserv;
         }
 
         // GET: UsuarioController
@@ -49,12 +51,7 @@ namespace WebApplication1.Controllers
             return View();
 
         }
-        [HttpPost]
-        public ActionResult Productos(UsuarioViewModel model)
-        {
-           
-            return View();
-        }
+    
         [HttpGet]
         public ActionResult Servicios()
         {
@@ -147,24 +144,26 @@ namespace WebApplication1.Controllers
             return View();
         }    
         [HttpGet]
-        public IActionResult Produc(int id) {           
-            ViewBag.Product = productoService.GetProductByIdP(id);
+        public IActionResult Produc(int id) {
+            var prod = productoService.GetProductByIdP(id);
+            ViewBag.empresa = empresaserv.GetEmpresaByID(prod.EmpresaId).NombreComercial;
+
+            ViewBag.Product = prod;
             ViewBag.Comentarios = null;
             return View();
         }
         [HttpGet]
         public IActionResult serv(int id)
         {
+            var serv = servicioService.GetServicioByID(id);
+            ViewBag.serv = serv;
+            ViewBag.empresa = empresaserv.GetEmpresaByID(serv.EmpresaId).NombreComercial;
 
 
-            ViewBag.serv = servicioService.GetServicioByID(id);
             return View();
         }
         
 
-        ///////////////////////////////////////
-        ///////////////////////////////////////
-        ///
         [HttpGet]
         public IActionResult search()
         {
@@ -210,6 +209,20 @@ namespace WebApplication1.Controllers
 
             //var result = EmpresaService.Search(busqueda);   
 
+            return View();
+        }
+        [HttpGet]
+        public IActionResult E(int id)
+        {
+            EmpresaVM datos = new EmpresaVM();
+            var tmp = empresaserv.GetEmpresaByID(id);
+            datos.NombreComercial = tmp.NombreComercial;
+            datos.Telefono = tmp.Telefono;
+            datos.Email = tmp.Email;
+            datos.Direccion = tmp.Direccion;
+            datos.Ruc = tmp.Ruc;
+            datos.ImagenEmpresaIurl = tmp.ImagenEmpresaIurl;
+            ViewBag.Empresa = datos;
             return View();
         }
 

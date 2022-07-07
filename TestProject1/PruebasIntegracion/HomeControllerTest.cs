@@ -30,13 +30,14 @@ namespace TestProject1.PruebasIntegracion
             var IValidacionesServiceMock = new Mock<IValidacionesService>();
             var IProductServiceMock = new Mock<IProductoService>();
             var IServicioServiceMock = new Mock<IServicioService>();
-
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
-                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+            ISessionServiceMock.Setup(x => x.IsLogged()).Returns(null);
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object,
+                IEmpresaServiceMock.Object,  ISessionServiceMock.Object, IAuthServiceMock.Object, 
+                IValidacionesServiceMock.Object, IProductServiceMock.Object,
                 IServicioServiceMock.Object, ICategoriaServiceMock.Object);
-
-
-            Assert.IsNull(home.ViewBag.UserLogged);
+            var result = home.Index() as ViewResult;
+            Assert.IsNull(result.ViewData["usuario"]); 
+         
 
 
         }
@@ -53,8 +54,9 @@ namespace TestProject1.PruebasIntegracion
             var IProductServiceMock = new Mock<IProductoService>();
             var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
-                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, 
+                IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object,
+                IValidacionesServiceMock.Object, IProductServiceMock.Object,
                 IServicioServiceMock.Object, ICategoriaServiceMock.Object);
             var inmuebles = new List<Usuario>();
             var result = home.Register() as ViewResult;
@@ -74,8 +76,9 @@ namespace TestProject1.PruebasIntegracion
             var IProductServiceMock = new Mock<IProductoService>();
             var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
-                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object,
+                IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object,
+                IValidacionesServiceMock.Object, IProductServiceMock.Object,
                 IServicioServiceMock.Object, ICategoriaServiceMock.Object);
             var inmuebles = new List<Usuario>();
             var result = home.Login() as ViewResult;
@@ -95,8 +98,9 @@ namespace TestProject1.PruebasIntegracion
             var IProductServiceMock = new Mock<IProductoService>();
             var IServicioServiceMock = new Mock<IServicioService>();
 
-            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, IEmpresaServiceMock.Object,
-                ISessionServiceMock.Object, IAuthServiceMock.Object, IValidacionesServiceMock.Object, IProductServiceMock.Object,
+            var home = new HomeController(IHttpContextAccessor.Object, IUsuarioServiceMock.Object, 
+                IEmpresaServiceMock.Object, ISessionServiceMock.Object, IAuthServiceMock.Object,
+                IValidacionesServiceMock.Object, IProductServiceMock.Object,
                 IServicioServiceMock.Object, ICategoriaServiceMock.Object); 
             var inmuebles = new List<Usuario>();
             var result = home.Privacy() as ViewResult;

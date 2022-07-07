@@ -44,7 +44,7 @@ namespace WebApplication1.Servicios
 
         public Empresa GetEmpresaByID(int? IdEmpresa)
         {
-            throw new NotImplementedException();
+            return _db.Empresas.Where(x => x.EmpresaId == IdEmpresa).FirstOrDefault();
         }
 
         public IEnumerable<Empresa> GetEmpresas()

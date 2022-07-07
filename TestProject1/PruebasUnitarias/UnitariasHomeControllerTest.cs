@@ -101,7 +101,7 @@ namespace TestProject1.PruebasUnitarias
 
         }
         [Test]
-        public void EsValidoGetRegisterPost()
+        public void EsValidoRegisterPost()
         {
             var usr = new UserRegistro();
             usr.Nombre = "Nombre";
@@ -129,6 +129,11 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void EsValidoPostRegisterEmpr()
         {
+            var usr = new EmpresaRegistro();
+            usr.NombreComercial = "Nombre";
+            usr.Email = "email@Email.com";
+            usr.Password = "123123";
+            usr.Telefono = "976765654";
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -142,13 +147,16 @@ namespace TestProject1.PruebasUnitarias
 
             var homeControllerTest = new HomeController(httpContext, UsuarioService, IEmpresaService,
                 ISessionService, IAuthService, IValidacionesService, IProductoService, IServicioService, ICategoriaService);
-            var regemp = homeControllerTest.RegistrarEmpr(new EmpresaRegistro());
+            var regemp = homeControllerTest.RegistrarEmpr(usr);
             Assert.IsInstanceOf<JsonResult>(regemp);
             
         }
         [Test]
         public void EsValidoPostLogin()
         {
+            var dat = new DataLogin();
+            dat.email = "Test@test.com";
+            dat.password = "a2312_";
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -162,7 +170,7 @@ namespace TestProject1.PruebasUnitarias
 
             var homeControllerTest = new HomeController(httpContext, UsuarioService, IEmpresaService, 
                 ISessionService, IAuthService, IValidacionesService, IProductoService, IServicioService, ICategoriaService);
-            var login = homeControllerTest.Login(new DataLogin());
+            var login = homeControllerTest.Login(dat);
             Assert.IsInstanceOf<JsonResult>(login);
 
         }
@@ -269,6 +277,10 @@ namespace TestProject1.PruebasUnitarias
         [Test]
         public void EsValidoPostSearch()
         {
+            var busqueda = new Search();
+            busqueda.categoria = 1;
+            busqueda.busqueda = "telefonos";
+            
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();
             var UsuarioService = new UsuarioService(WebContext);
@@ -282,7 +294,7 @@ namespace TestProject1.PruebasUnitarias
 
             var homeControllerTest = new HomeController(httpContext, UsuarioService, IEmpresaService, 
                 ISessionService, IAuthService, IValidacionesService, IProductoService, IServicioService, ICategoriaService);
-            var search = homeControllerTest.Search(new Search());
+            var search = homeControllerTest.Search(busqueda);
             Assert.IsInstanceOf<ViewResult>(search);
 
         }
@@ -394,7 +406,7 @@ namespace TestProject1.PruebasUnitarias
             
         }
         [Test]
-        public void EsValidoPostproduct()
+        public void EsValidoGetproduct()
         {
             var WebContext = new WebeOContext();
             var httpContext = new HttpContextAccessor();

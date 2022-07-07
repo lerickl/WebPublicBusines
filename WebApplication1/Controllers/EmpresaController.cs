@@ -316,16 +316,38 @@ namespace WebApplication1.Controllers
         }
         [HttpGet]
         public IActionResult Produc(int id) {
-            ViewBag.Product = productoService.GetProductByIdP(id);
+            var prod = productoService.GetProductByIdP(id);
+            ViewBag.empresa = emprserv.GetEmpresaByID(prod.EmpresaId).NombreComercial;
+
+            ViewBag.Product = prod;
             ViewBag.Comentarios = null;
             return View();
         }
         [HttpGet]
         public IActionResult serv(int id)
         {
-            ViewBag.serv = servicioService.GetServicioByID(id);
+            var serv = servicioService.GetServicioByID(id);
+            ViewBag.serv = serv;
+            ViewBag.empresa = emprserv.GetEmpresaByID(serv.EmpresaId).NombreComercial;
+
+
+
             return View();
           
+        }
+        [HttpGet]
+        public IActionResult E(int id)
+        {
+            EmpresaVM datos = new EmpresaVM();
+            var tmp = emprserv.GetEmpresaByID(id);
+            datos.NombreComercial = tmp.NombreComercial;
+            datos.Telefono = tmp.Telefono;
+            datos.Email = tmp.Email;
+            datos.Direccion = tmp.Direccion;
+            datos.Ruc = tmp.Ruc;
+            datos.ImagenEmpresaIurl = tmp.ImagenEmpresaIurl;
+            ViewBag.Empresa = datos;
+            return View();
         }
         [HttpGet]
         public IActionResult search()

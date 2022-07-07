@@ -1,0 +1,105 @@
+﻿ @{ Layout = "~/Views/Shared/_LayoutUsuario.cshtml";}
+ <body>  
+   
+ <div class="">
+    <div class="container">
+      <div class="row">           
+          <div class="er_cont_User " style="background:#025669">
+            <div class="" style="margin-top:30px">
+                <div class="container">
+                    <section class="section">
+                        <div class="row">
+                            <hr />
+                            <div class="col-md-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-md-12  " style="font-weight: bold; color:white ">
+                                        <hr />
+                                     
+                                        <hr />  
+                                        
+                                        <div class="col-md-12">
+                                           <h2><i class="fa-solid fa-building"></i> @ViewBag.Empresa.NombreComercial </h2>
+                                        </div>
+                                
+                                        <hr/>
+                                        <hr/>
+                                    </div>
+                                    <form asp-action="Profile" asp-controller="usuario" method="post" enctype="multipart/form-data" >
+                                       <hr />
+                                        <div class="row">
+                                    
+                                            <div class="col-md-4">
+                                                <div class="er_card_imgPerfil">
+                                                    <row id="preview_imgPerfil">
+                                                        @if (ViewBag.Empresa.ImagenEmpresaIurl == null)
+                                                        {
+                                                             <img id="ImgPerfil1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHhZjsPRP3C0gS8LT0d7DPZdcjp3mw8Wb6Ng&usqp=CAU" />            
+                                                        }
+                                                        else
+                                                        {
+                                                             <img id="ImgPerfil1" src="@ViewBag.Empresa.ImagenEmpresaIurl" />       
+                                                        }
+
+                                                    </row>
+                                           
+                                                </div>
+                                            </div>             
+                                                                                   
+                                            <div class="col-md-8">
+                                                <div class="row" style="color:white">
+                                                    <div class="col-md-6 ">                                                        
+                                                        <div class="form1 md-form  ">                                                          
+                                                             <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb"><i class="fa-solid fa-signature"></i> Nombre: @ViewBag.Empresa.NombreComercial</span>
+		                                                    </label>                                                   
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form1 md-form ">
+                                                             <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb"><i class="fa-solid fa-mobile-screen"></i> Telefono: @ViewBag.Empresa.Telefono</span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <hr />
+                                                <div class="row" style="color:white">
+                                                    <div class="col-md-6">
+                                                        <div class="form1 md-form ">
+                                                           
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb"><i class="fa-solid fa-location-dot"></i> Direccion: @ViewBag.Empresa.Direccion </span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>
+                                                     <div class="col-md-6">
+                                                        <div class="form1 md-form ">                                                            
+		                                                    <label class="er_lbl-nombre">
+			                                                    <span class="er_text-nomb"><i class="fa-solid fa-at"></i> Email:  @ViewBag.Empresa.Email </span>
+		                                                    </label>
+                                                           </div>
+                                                    </div>                                                 
+
+                                                </div>                                            
+                                                <hr />                                            
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                    </form>
+                                </div>
+                        
+                              
+                               <hr />
+                              
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>   
+      </div>
+    </div>
+ </div>
+</body>
